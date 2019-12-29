@@ -9,4 +9,30 @@ module.exports = function (api) {
   api.loadSource(({ addCollection }) => {
     // Use the Data store API here: https://gridsome.org/docs/data-store-api/
   })
+
+  api.createPages(async ({ createPage, graphql }) => {
+    const { data } = await graphql(`{
+      allPost {
+        edges {
+          node {
+            published
+            path
+          }
+        }
+      }
+    }`)
+
+    data.allPost.edges.forEach(({ node }) => {
+      if (node.published) {
+        createPage({
+          path: `/article/display${node.path}`,
+          component: './src/templates/Redirect.vue',
+          context: {
+            newpath: node.path
+          }
+        })
+      }
+    })
+  })
+
 }
