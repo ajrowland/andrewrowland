@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html data-html-server-rendered="true" lang="en" data-vue-tag="%7B%22lang%22:%7B%22ssr%22:%22en%22%7D%7D">
+  <head>
+    <title>W3C validation of ASP.Net output - Andrew Rowland</title><meta name="gridsome:hash" content="3abed4817c87332b7256cc04f5102649b2af0839"><meta data-vue-tag="ssr" charset="utf-8"><meta data-vue-tag="ssr" name="generator" content="Gridsome v0.7.12"><meta data-vue-tag="ssr" data-key="viewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta data-vue-tag="ssr" data-key="format-detection" name="format-detection" content="telephone=no"><meta data-vue-tag="ssr" data-key="description" name="description" content="I only want to help you"><meta data-vue-tag="ssr" name="description" content="A while ago I had to make certain that a CMS driven site built in .Net met some validation criteria. Specifically the XHTML markup. Running it by the W3C validator service, the markup always failed."><link data-vue-tag="ssr" rel="icon" href="data:,"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="16x16" href="/assets/static/favicon.ce0531f.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="32x32" href="/assets/static/favicon.ac8d93a.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="96x96" href="/assets/static/favicon.b9532cc.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="76x76" href="/assets/static/favicon.f22e9f3.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="152x152" href="/assets/static/favicon.62d22cb.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="120x120" href="/assets/static/favicon.1539b60.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="167x167" href="/assets/static/favicon.dc0cdc5.9bb7ffafafc09ac851d81afb65b8ef59.png"><link data-vue-tag="ssr" rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/static/favicon.7b22250.9bb7ffafafc09ac851d81afb65b8ef59.png"><link rel="preload" href="/assets/css/0.styles.9b360e90.css" as="style"><link rel="preload" href="/assets/js/app.889edf6a.js" as="script"><link rel="preload" href="/assets/js/page--src--templates--post-vue.0a3a8d46.js" as="script"><link rel="prefetch" href="/assets/js/page--node-modules--gridsome--app--pages--404-vue.7fd9cfd2.js"><link rel="prefetch" href="/assets/js/page--src--pages--index-vue.ee987fdf.js"><link rel="prefetch" href="/assets/js/page--src--templates--tag-vue.64b20420.js"><link rel="stylesheet" href="/assets/css/0.styles.9b360e90.css"><noscript data-vue-tag="ssr"><style>.g-image--loading{display:none;}</style></noscript>
+  </head>
+  <body >
+    <script>
+      // Add dark / light detection that runs before Vue.js load. Borrowed from overreacted.io
+      (function() {
+        window.__onThemeChange = function() {};
+        function setTheme(newTheme) {
+          window.__theme = newTheme;
+          preferredTheme = newTheme;
+          document.body.setAttribute('data-theme', newTheme);
+          window.__onThemeChange(newTheme);
+        }
+
+        var preferredTheme;
+        try {
+          preferredTheme = localStorage.getItem('theme');
+        } catch (err) { }
+
+        window.__setPreferredTheme = function(newTheme) {
+          setTheme(newTheme);
+          try {
+            localStorage.setItem('theme', newTheme);
+          } catch (err) {}
+        }
+
+        var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        darkQuery.addListener(function(e) {
+          window.__setPreferredTheme(e.matches ? 'dark' : 'light')
+        });
+
+        setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
+      })();
+    </script>
+
+    <div id="app" data-server-rendered="true"><header class="header"><div class="header__left"><a href="/" class="logo active"><span class="logo__text">
+    ← Andrew Rowland
+  </span></a></div><div class="header__right"><button role="button" aria-label="Toggle dark/light" class="toggle-theme"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button></div></header><main class="main"><div class="post-title"><h1 class="post-title__text">
+      W3C validation of ASP.Net output
+    </h1><div class="post-meta">
+   Posted 25. July 2009.
+   <strong>1 min read.</strong></div></div><div class="post content-box"><div class="post__header"><!----></div><div class="post__content"><p>A while ago I had to make certain that a CMS driven site built in .Net met some validation criteria. Specifically the XHTML markup. Running it by the <a href="https://validator.w3.org/" target="_blank" rel="nofollow noopener noreferrer">W3C validator service</a>, the markup always failed.</p>
+<p>I fixed the obvious within the <strong>web.config</strong>. For example, the following is needed to force the application to render XHTML:</p>
+<pre class="language-text"><code class="language-text">&lt;configuration&gt;
+    ...
+    &lt;system.web&gt;
+        ...
+        &lt;xhtmlConformance mode=&quot;Strict&quot; /&gt;
+        ...
+    &lt;/system.web&gt;
+    ...
+&lt;/configuration&gt;</code></pre>
+<p>If I painfully cut and pasted the HTML into the Validatorâ€™s form field, it passed. The problem is, is that the service is not recognised by the Web server, and so a helper file in the application is required.</p>
+<p>In your web root, create a App_Browsers directory. Within this directory create a file called w3c.browser. Paste the following contents into the file:</p>
+<pre class="language-text"><code class="language-text">&lt;browsers&gt;
+    &lt;browser id=&quot;W3C_Validator&quot; parentID=&quot;default&quot;&gt;
+        &lt;identification&gt;
+            &lt;userAgent match=&quot;^W3C_Validator&quot; /&gt;
+        &lt;/identification&gt;
+        &lt;capabilities&gt;
+            &lt;capability name=&quot;browser&quot; value=&quot;W3C Validator&quot; /&gt;
+            &lt;capability name=&quot;ecmaScriptVersion&quot; value=&quot;1.2&quot; /&gt;
+            &lt;capability name=&quot;javascript&quot; value=&quot;true&quot; /&gt;
+            &lt;capability name=&quot;supportsCss&quot; value=&quot;true&quot; /&gt;
+            &lt;capability name=&quot;tables&quot; value=&quot;true&quot; /&gt;
+            &lt;capability name=&quot;tagWriter&quot; value=&quot;System.Web.UI.HtmlTextWriter&quot; /&gt;
+            &lt;capability name=&quot;w3cdomversion&quot; value=&quot;1.0&quot; /&gt;
+        &lt;/capabilities&gt;
+    &lt;/browser&gt;
+&lt;/browsers&gt;</code></pre>
+<p>You should now be able to pass the page by URL:</p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Fwww.andrewrowland.com" target="_blank" rel="nofollow noopener noreferrer">http://validator.w3.org/check?uri=http%3A%2F%2Fwww.andrewrowland.com</a></p>
+</div><div class="post__footer"><div class="post-tags"><a href="/tag/.Net/" class="post-tags__link"><span>#</span> .Net
+		</a></div></div></div><div class="post-comments"></div><div class="author post-author"><img alt="Author image" src="data:image/svg+xml,%3csvg fill='none' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cdefs%3e%3cfilter id='__svg-blur-79abe12977319e63670ceacd51dd8a4b'%3e%3cfeGaussianBlur in='SourceGraphic' stdDeviation='5'/%3e%3c/filter%3e%3c/defs%3e%3cimage x='0' y='0' filter='url(%23__svg-blur-79abe12977319e63670ceacd51dd8a4b)' width='180' height='180' xlink:href='data:image/png%3bbase64%2c/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCABAAEADASIAAhEBAxEB/8QAGwAAAgMBAQEAAAAAAAAAAAAABgcDBAUCAAj/xAA2EAACAQMCBAUCBAMJAAAAAAABAgMABBEFEgYhMUETFCJRYYGRMkJxsRUjQwckUlOSocHh8P/EABoBAAIDAQEAAAAAAAAAAAAAAAMEAgUGAQD/xAAiEQACAgIDAAMAAwAAAAAAAAABAgADBBESITETMkFRUmH/2gAMAwEAAhEDEQA/AK0Gpp3NaMGpxcvWKR68V3I6Qp/qNSpxbddoo/uavzwP7ALYB%2bR8w6pD3kFXodVg/wAYpDWPEep3MgWKKIfJzyogtLe8uWDXVxOT7KxVR9BSeRdVV6Y9jVtd9Vjmi1iAf1BVuPWbYdZBSgNtd2mXinmIx%2bFiSP8AesDUtf1mylCtJHsb8LbP%2b%2btQpau/6mEuU0dsvU%2bh01q2/wAwVMuvWg/qCvmccUay6H%2b8IueWQnSoBrusH8Wo3GfYAUU4v%2bwIyk/rBKKEsnpjYnufDNTrbkc/V9gKopMXX8bL7hTit7gSxsrniexj1CHxoHYqUfmuSDgkVNrAiltb1EUTkwXfsJ%2bDbBXXcycyM02dC0qIwjCBnIoJ/ggs%2bJzbWlzLbWpIYQx4KOh5cs9OnaiTUJNZEiraDytui8goyzcuWc1mb7BY/In2X9G604gTensU2srQ4YdsUvOPrCNdLmfZtKMrAgc%2buDWrqvE/EECmOOO0kgEiQtO6sHBI9RA6EDkP1oY1u%2b1K70uSC6hQO7D%2bbk8hnJPM47UfDYrapncluVTAwQTwWwi5L%2bzEZ/erHlpw%2bFs5Xj6DPpyf1zUwRlRWDAY6kSxjNeW%2b3QSALNKg6%2bE4Uj26jn9K1Psz2tezDjt4nw0YAI7bQR96ns7g2s8UsLL40TB1b5FCFlqTxPi43PH3OeYol0K5OoNMI7Vo4EGQ5Oct7UuuTTYP4kSjodiMnRtcudZ16zlvIoIp1UACEnaBnPPPemv56J7X1Ebscl6/ekrpkvlLvzcrB2ib%2bYoAHowOYpk6XMLiziEZVnUblBOdw%2bcfFZjLTi/XQl5hXc17Pc4vPBigm8zHJI7qGQgct3sR2FDP9oUlv/AUtlIUzsuWRc47mjDiK6tptOeKOwkgutuPFjnYqnzg0s9X1Q39wDbBPBjyqFsnce7f%2b9qYwKi1y78ELmWlaiP0wesNLVAQqM2fzFcCr1rowLEyTMqkcwMYNT%2bcnGAQucflWozqUgk27JmPydo%2b1an5UUdSgCExfaPw1dX6iSQeBD2Zhlj%2bgpkaTYxwaawRRE0C7ACM8uh5fQHPzU6afJGztEq7ipySG6fBB5dv2qNFaORAno3rtdeqnqcN8nlVGAF8k2JaSW8ckURmhZjOhO/aCwIJ5ZPatXh7WBYTvJtZ7V2ICJgNH7deo%2bKpRlUjaOEgq4AZtp6g5OfrgCqF1blpJH2oi4VmELkdu/vzHfpQ7EFg0Z2p2rbawm4s4kgm02ZLWO5FwQUI8NgFz3JpaXV1Laadb4O4lih5de/X61rh5JDcDxnV4xuYE8zyzn9qw%2bIIvN27ywJKu3JTxGyygdj2yftXqKxUdrGbLzaumE9BrLbQuNo6DHLFcX1%2b7gEy%2b4wTQ5FeBgBIeZ/MB/xXE1xzG71D4pv5eoKf/9k=' /%3e%3c/svg%3e" width="180" data-src="/assets/static/author.e6b6009.01fea4a6eb109fed65874b88d6ddc592.png" data-srcset="/assets/static/author.e6b6009.01fea4a6eb109fed65874b88d6ddc592.png 180w" data-sizes="(max-width: 180px) 100vw, 180px" class="author__image g-image g-image--lazy g-image--loading"><noscript><img src="/assets/static/author.e6b6009.01fea4a6eb109fed65874b88d6ddc592.png" class="author__image g-image g-image--loaded" width="180" alt="Author image"></noscript><!----><p class="author__intro">
+		I only want to help you...
+	</p><p class="author__links"><a href="//www.linkedin.com/in/hashbang/">LinkedIn</a><a href="//twitter.com/andyjrowland">Twitter</a><a href="//github.com/ajrowland">GitHub</a></p></div></main><footer class="footer"><span class="footer__copyright">Copyright © 2019. </span><span class="footer__links"></span></footer></div>
+    <script>window.__INITIAL_STATE__={"data":{"post":{"title":"W3C validation of ASP.Net output","path":"\u002Fw3-c-validation-of-asp-net-output\u002F","date":"25. July 2009","timeToRead":1,"tags":[{"id":".Net","title":".Net","path":"\u002Ftag\u002F.Net\u002F"}],"description":"A while ago I had to make certain that a CMS driven site built in .Net met some validation criteria. Specifically the XHTML markup. Running it by the W3C validator service, the markup always failed.","content":"\u003Cp\u003EA while ago I had to make certain that a CMS driven site built in .Net met some validation criteria. Specifically the XHTML markup. Running it by the \u003Ca href=\"https:\u002F\u002Fvalidator.w3.org\u002F\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003EW3C validator service\u003C\u002Fa\u003E, the markup always failed.\u003C\u002Fp\u003E\n\u003Cp\u003EI fixed the obvious within the \u003Cstrong\u003Eweb.config\u003C\u002Fstrong\u003E. For example, the following is needed to force the application to render XHTML:\u003C\u002Fp\u003E\n\u003Cpre class=\"language-text\"\u003E\u003Ccode class=\"language-text\"\u003E&lt;configuration&gt;\n    ...\n    &lt;system.web&gt;\n        ...\n        &lt;xhtmlConformance mode=&quot;Strict&quot; \u002F&gt;\n        ...\n    &lt;\u002Fsystem.web&gt;\n    ...\n&lt;\u002Fconfiguration&gt;\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\n\u003Cp\u003EIf I painfully cut and pasted the HTML into the Validatorâ€™s form field, it passed. The problem is, is that the service is not recognised by the Web server, and so a helper file in the application is required.\u003C\u002Fp\u003E\n\u003Cp\u003EIn your web root, create a App_Browsers directory. Within this directory create a file called w3c.browser. Paste the following contents into the file:\u003C\u002Fp\u003E\n\u003Cpre class=\"language-text\"\u003E\u003Ccode class=\"language-text\"\u003E&lt;browsers&gt;\n    &lt;browser id=&quot;W3C_Validator&quot; parentID=&quot;default&quot;&gt;\n        &lt;identification&gt;\n            &lt;userAgent match=&quot;^W3C_Validator&quot; \u002F&gt;\n        &lt;\u002Fidentification&gt;\n        &lt;capabilities&gt;\n            &lt;capability name=&quot;browser&quot; value=&quot;W3C Validator&quot; \u002F&gt;\n            &lt;capability name=&quot;ecmaScriptVersion&quot; value=&quot;1.2&quot; \u002F&gt;\n            &lt;capability name=&quot;javascript&quot; value=&quot;true&quot; \u002F&gt;\n            &lt;capability name=&quot;supportsCss&quot; value=&quot;true&quot; \u002F&gt;\n            &lt;capability name=&quot;tables&quot; value=&quot;true&quot; \u002F&gt;\n            &lt;capability name=&quot;tagWriter&quot; value=&quot;System.Web.UI.HtmlTextWriter&quot; \u002F&gt;\n            &lt;capability name=&quot;w3cdomversion&quot; value=&quot;1.0&quot; \u002F&gt;\n        &lt;\u002Fcapabilities&gt;\n    &lt;\u002Fbrowser&gt;\n&lt;\u002Fbrowsers&gt;\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\n\u003Cp\u003EYou should now be able to pass the page by URL:\u003C\u002Fp\u003E\n\u003Cp\u003E\u003Ca href=\"http:\u002F\u002Fvalidator.w3.org\u002Fcheck?uri=http%3A%2F%2Fwww.andrewrowland.com\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"\u003Ehttp:\u002F\u002Fvalidator.w3.org\u002Fcheck?uri=http%3A%2F%2Fwww.andrewrowland.com\u003C\u002Fa\u003E\u003C\u002Fp\u003E\n","cover_image":null}},"context":{}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script><script src="/assets/js/app.889edf6a.js" defer></script><script src="/assets/js/page--src--templates--post-vue.0a3a8d46.js" defer></script>
+  </body>
+</html>

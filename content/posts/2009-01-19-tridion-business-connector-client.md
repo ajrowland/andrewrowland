@@ -9,7 +9,7 @@ description: "A bit of a niche entry this one. Will only be of interest to those
 
 A bit of a niche entry this one. Will only be of interest to those who use Tridion, one of the more 'heavyweight' CMS solutions.
 
-I generally have a number of repetitive tasks that are extremely tedious to accomplish using the browser based GUI. So I constructed a simple [command line tool](/images/bcclient.exe) that allows me to script tasks using a SOAP interface known as the Tridion Business Connector.
+I generally have a number of repetitive tasks that are extremely tedious to accomplish using the browser based GUI. So I constructed a simple [command line tool](/downloads/bcclient.exe) that allows me to script tasks using a SOAP interface known as the Tridion Business Connector.
 
 The client takes the following arguments:
 
