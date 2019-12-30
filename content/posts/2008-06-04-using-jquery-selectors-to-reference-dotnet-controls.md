@@ -2,7 +2,7 @@
 title: Using jQuery selectors to reference .Net controls
 date: 2008-06-04
 published: true
-tags: ['.Net', 'JavaScript']
+tags: ['DotNet', 'JavaScript']
 canonical_url: false
 description: ""
 ---
