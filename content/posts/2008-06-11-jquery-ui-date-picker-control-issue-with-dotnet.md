@@ -2,7 +2,7 @@
 title: jQuery UI Date Picker control issue with .Net
 date: 2008-06-11
 published: true
-tags: ['.Net', 'JavaScript']
+tags: ['DotNet', 'JavaScript']
 canonical_url: false
 description: "Aye, I do whitter on about jQuery. It's ace. The newly released jQuery UI is pretty special too. One of the many great widgets is the Date Picker control."
 ---

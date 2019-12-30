@@ -2,7 +2,7 @@
 title: Consume .Net Web service using jQuery
 date: 2008-04-29
 published: true
-tags: ['.Net', 'JavaScript']
+tags: ['DotNet', 'JavaScript']
 canonical_url: false
 description: "The JavaScript functionality that is injected into .Net pages seems limited when compared to jQuery.
 

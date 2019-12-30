@@ -2,7 +2,7 @@
 title: W3C validation of ASP.Net output
 date: 2009-07-25
 published: true
-tags: ['.Net']
+tags: ['DotNet']
 canonical_url: false
 description: "A while ago I had to make certain that a CMS driven site built in .Net met some validation criteria. Specifically the XHTML markup. Running it by the W3C validator service, the markup always failed."
 ---
