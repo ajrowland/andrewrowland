@@ -23,7 +23,7 @@
 
     <div class="post-comments">
       <!-- Add comment widgets here -->
-      <Comments :comments="$page.post.comments" />
+      <Comments />
     </div>
 
     <Author class="post-author" />
@@ -72,11 +72,6 @@ query Post ($id: ID!) {
     description
     content
     cover_image (width: 860, blur: 10)
-    comments {
-      author
-      date
-      comment
-    }
   }
 }
 </page-query>
@@ -88,6 +83,11 @@ query Post ($id: ID!) {
 }
 
 .post {
+
+  hr {
+    opacity: 0.2;
+    margin-top: calc(var(--space) / 1.5);
+  }
 
   &__header {
     width: calc(100% + var(--space) * 2);

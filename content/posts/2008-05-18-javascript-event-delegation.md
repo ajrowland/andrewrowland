@@ -55,12 +55,12 @@ The way I've stored the parameters may be a little odd, and I feel I may be miss
                     var t = $(e.target);
                     var fn = t.attr('class');
                     var p = eval('(' + t.find('.params').html() + ')');
-    
+
                     window[fn].call(this, t, p);
                 }
             });
         });
-    
+
         function changeLabel(obj, params){
             obj.find('.label').text(params.message);
         }
@@ -72,7 +72,7 @@ The way I've stored the parameters may be a little odd, and I feel I may be miss
         </style>
     </head>
     <body>
-    
+
     <button class="changeLabel">
         <span class="params">
             {message:"Button pressed"}
@@ -81,6 +81,15 @@ The way I've stored the parameters may be a little odd, and I feel I may be miss
             Press me
         </span>
     </button>
-    
+
     </body>
     </html>
+
+## One thought on “JavaScript event delegation”
+
+### Geralynn
+*April 28, 2011 at 5:49 am*
+
+Walking in the presence of giants here. Cool thinking all arnuod!
+
+---

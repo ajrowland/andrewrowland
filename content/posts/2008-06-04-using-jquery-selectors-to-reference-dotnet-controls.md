@@ -24,3 +24,16 @@ So how can you robustly reference the control using client-side JavaScript, rega
     var $firstname = $("[id$=FirstName]");
 
 This little snippet makes use of the jQuery attributeEndsWith selector, as documented [here](https://jquery.com/#attributevalue).Â  Bare in mind that an array is returned, as any control with an id that ends in FirstName will be selected.
+
+## One thought on “Using jQuery selectors to reference .Net controls”
+
+### Adam
+*January 3, 2011 at 1:06 pm*
+
+Use could use inline tags to place the ClientID.
+
+    var $firstname = $[“#<%= Firstname.ClientID %>”]);
+
+This would insert the ClientID into your javascript code block and help find the control on the page.
+
+---
