@@ -23,6 +23,7 @@
 
     <div class="post-comments">
       <!-- Add comment widgets here -->
+      <Comments :comments="$page.post.comments" />
     </div>
 
     <Author class="post-author" />
@@ -33,12 +34,14 @@
 import PostMeta from '~/components/PostMeta'
 import PostTags from '~/components/PostTags'
 import Author from '~/components/Author.vue'
+import Comments from '~/components/Comments.vue'
 
 export default {
   components: {
     Author,
     PostMeta,
-    PostTags
+    PostTags,
+    Comments
   },
   metaInfo () {
     return {
@@ -69,6 +72,11 @@ query Post ($id: ID!) {
     description
     content
     cover_image (width: 860, blur: 10)
+    comments {
+      author
+      date
+      comment
+    }
   }
 }
 </page-query>
