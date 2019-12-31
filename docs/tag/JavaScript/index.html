@@ -8,7 +8,7 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5KQZ3N');</script>
     <!-- End Google Tag Manager -->
-    <title>JavaScript - Andrew Rowland</title><meta name="gridsome:hash" content="5b49c3fca0ea19b2d658cac8ea59d3ee4db08fd8"><meta data-vue-tag="ssr" charset="utf-8"><meta data-vue-tag="ssr" name="generator" content="Gridsome v0.7.12"><meta data-vue-tag="ssr" data-key="viewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta data-vue-tag="ssr" data-key="format-detection" name="format-detection" content="telephone=no"><meta data-vue-tag="ssr" data-key="description" name="description" content="I only want to help you"><link data-vue-tag="ssr" rel="icon" href="data:,"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="16x16" href="/assets/static/favicon.ce0531f.ac64c76abcd4710b88c6efd7d6aa8915.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="32x32" href="/assets/static/favicon.ac8d93a.ac64c76abcd4710b88c6efd7d6aa8915.png"><link rel="preload" href="/assets/css/0.styles.7169b5b9.css" as="style"><link rel="preload" href="/assets/js/app.e95dfacc.js" as="script"><link rel="preload" href="/assets/js/page--src-templates-tag-vue.a9c9f2d5.js" as="script"><link rel="prefetch" href="/assets/js/page--src-pages-404-vue.a65c7339.js"><link rel="prefetch" href="/assets/js/page--src-pages-index-vue.d929f4be.js"><link rel="prefetch" href="/assets/js/page--src-templates-post-vue.280419dc.js"><link rel="prefetch" href="/assets/js/page--src-templates-redirect-vue.29ebfca3.js"><link rel="stylesheet" href="/assets/css/0.styles.7169b5b9.css"><noscript data-vue-tag="ssr"><style>.g-image--loading{display:none;}</style></noscript>
+    <title>JavaScript - Andrew Rowland</title><meta name="gridsome:hash" content="7a4543962a9c9fdc79942c2ec9ee69f3625333b8"><meta data-vue-tag="ssr" charset="utf-8"><meta data-vue-tag="ssr" name="generator" content="Gridsome v0.7.12"><meta data-vue-tag="ssr" data-key="viewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta data-vue-tag="ssr" data-key="format-detection" name="format-detection" content="telephone=no"><meta data-vue-tag="ssr" data-key="description" name="description" content="I only want to help you"><link data-vue-tag="ssr" rel="icon" href="data:,"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="16x16" href="/assets/static/favicon.ce0531f.ac64c76abcd4710b88c6efd7d6aa8915.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="32x32" href="/assets/static/favicon.ac8d93a.ac64c76abcd4710b88c6efd7d6aa8915.png"><link rel="preload" href="/assets/css/0.styles.7169b5b9.css" as="style"><link rel="preload" href="/assets/js/app.6123b84a.js" as="script"><link rel="preload" href="/assets/js/page--src-templates-tag-vue.4714354b.js" as="script"><link rel="prefetch" href="/assets/js/page--src-pages-404-vue.fb0b6ddc.js"><link rel="prefetch" href="/assets/js/page--src-pages-index-vue.f33899c6.js"><link rel="prefetch" href="/assets/js/page--src-templates-post-vue.61f72de3.js"><link rel="prefetch" href="/assets/js/page--src-templates-redirect-vue.00797293.js"><link rel="stylesheet" href="/assets/css/0.styles.7169b5b9.css"><noscript data-vue-tag="ssr"><style>.g-image--loading{display:none;}</style></noscript>
   </head>
   <body >
     <!-- Google Tag Manager (noscript) -->
@@ -28,7 +28,7 @@
 
         var preferredTheme;
         try {
-          preferredTheme = localStorage.getItem('theme');
+          preferredTheme = localStorage.getItem('theme') || 'dark';
         } catch (err) { }
 
         window.__setPreferredTheme = function(newTheme) {
@@ -38,12 +38,12 @@
           } catch (err) {}
         }
 
-        var darkQuery = window.matchMedia('(prefers-color-scheme: light)');
+        var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
         darkQuery.addListener(function(e) {
-          window.__setPreferredTheme(e.matches ? 'light' : 'dark')
+          window.__setPreferredTheme(e.matches ? 'dark' : 'light')
         });
 
-        setTheme(preferredTheme || (darkQuery.matches ? 'light' : 'dark'));
+        setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
       })();
     </script>
 
@@ -68,6 +68,6 @@ Whilst looking for a way to use jQuery instead of the stock Microsoft client lib
 So today I took a look at jQuery, a JavaScript framework. I have to admit, I'm pretty impressed. It did not take me long to come up with some example code, that degrades well when JavaScript is disabled in the browser.</p><div class="post-meta post-card__meta">
    Posted 27. April 2008.
    <strong>4 min read.</strong></div><div class="post-tags post-card__tags"></div><a href="/code-igniter-and-ajax/" class="post-card__link">Link</a></div></div></div></main><footer class="footer"><span class="footer__copyright">Copyright © 2019. </span><span class="footer__links"></span></footer></div>
-    <script src="/assets/js/app.e95dfacc.js" defer></script><script src="/assets/js/page--src-templates-tag-vue.a9c9f2d5.js" defer></script>
+    <script src="/assets/js/app.6123b84a.js" defer></script><script src="/assets/js/page--src-templates-tag-vue.4714354b.js" defer></script>
   </body>
 </html>

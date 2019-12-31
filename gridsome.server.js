@@ -6,12 +6,31 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = function (api) {
-  api.loadSource(({ addCollection }) => {
-    // Use the Data store API here: https://gridsome.org/docs/data-store-api/
+  api.loadSource(async ({ actions, graphql }) => {
+    /*const collection = actions.addCollection('Redirect')
+
+    const { data } = await graphql(`{
+      allPost {
+        edges {
+          node {
+            published
+            path
+          }
+        }
+      }
+    }`)
+
+    data.allPost.edges.forEach(({ node }) => {
+      if (node.published) {
+        collection.addNode({
+          newpath: node.path
+        })
+      }
+    })*/
   })
 
   api.createPages(async ({ createPage, graphql }) => {
-    const { data } = await graphql(`{
+    /*const { data } = await graphql(`{
       allPost {
         edges {
           node {
@@ -32,7 +51,7 @@ module.exports = function (api) {
           }
         })
       }
-    })
+    })*/
   })
 
 }

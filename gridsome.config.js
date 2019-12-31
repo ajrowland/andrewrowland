@@ -10,7 +10,16 @@ module.exports = {
   outputDir: 'docs',
 
   templates: {
-    Post: '/:title',
+    Post: [
+      {
+        path: '/:title'
+      },
+      {
+        name: 'redirects',
+        path: '/article/display/:title',
+        component: './src/templates/Redirect.vue'
+      }
+    ],
     Tag: '/tag/:id'
   },
 

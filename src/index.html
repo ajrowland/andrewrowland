@@ -28,7 +28,7 @@
 
         var preferredTheme;
         try {
-          preferredTheme = localStorage.getItem('theme');
+          preferredTheme = localStorage.getItem('theme') || 'dark';
         } catch (err) { }
 
         window.__setPreferredTheme = function(newTheme) {
@@ -38,12 +38,12 @@
           } catch (err) {}
         }
 
-        var darkQuery = window.matchMedia('(prefers-color-scheme: light)');
+        var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
         darkQuery.addListener(function(e) {
-          window.__setPreferredTheme(e.matches ? 'light' : 'dark')
+          window.__setPreferredTheme(e.matches ? 'dark' : 'light')
         });
 
-        setTheme(preferredTheme || (darkQuery.matches ? 'light' : 'dark'));
+        setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
       })();
     </script>
 
