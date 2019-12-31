@@ -107,6 +107,8 @@ query Post ($id: ID!) {
   }
 
   &__content {
+    overflow: hidden;
+
     h2:first-child {
       margin-top: 0;
     }
