@@ -69,6 +69,6 @@ If you look at the component property I've added a template for the rendered fil
 
 Now, when we run a build, two files are generated for each post.  One for the post itself, and one for the redirect.
 
-I'm new to the framework, so if anyone knows of a better way to achieve this, please [let me know](mailto:mail@andrewrowland.com).
+I'm new to the framework, so if anyone knows of a better way to achieve this, please [let me know](mailto:mailATandrewrowlandDOTcom).
 
 I guess it could for something on the [404](/404) page to check for the `/display/article` slug, and redirect. That would involve JavaScript, and this felt better.

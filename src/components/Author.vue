@@ -15,7 +15,7 @@
       <a href="//www.linkedin.com/in/hashbang/">LinkedIn</a>
       <a href="//twitter.com/andyjrowland">Twitter</a>
       <a href="//github.com/ajrowland">GitHub</a>
-      <a href="mailto:mail@andrewrowland.com">Email</a>
+      <a href="mailto:mailATandrewrowlandDOTcom">Email</a>
     </p>
 
   </div>

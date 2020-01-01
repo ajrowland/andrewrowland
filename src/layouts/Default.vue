@@ -34,6 +34,12 @@ export default {
   components: {
     Logo,
     ToggleTheme
+  },
+  mounted() {
+    document.querySelectorAll('[href^=mailto]').forEach(function(link) {
+      var href = link.getAttribute('href').replace('AT', '@').replace('DOT', '.');
+      link.setAttribute('href', href);
+    });
   }
 }
 </script>
