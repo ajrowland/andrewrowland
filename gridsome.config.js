@@ -7,7 +7,7 @@
 module.exports = {
   siteName: 'Andrew Rowland',
   siteDescription: 'I only want to help you',
-  outputDir: 'docs',
+  siteUrl: 'http://www.andrewrowland.com',
 
   templates: {
     Post: [
