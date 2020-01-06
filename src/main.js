@@ -4,13 +4,12 @@ import '~/assets/style/index.scss'
 // Import default layout so we don't need to import it to every page
 import DefaultLayout from '~/layouts/Default.vue'
 
-import VueDisqus from "vue-disqus";
+import VueDisqus from 'vue-disqus'
 
-//import VueGtm from 'vue-gtm'
+// import VueGtm from 'vue-gtm'
 
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 export default function (Vue, { router, head, isClient }) {
-
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
 
@@ -26,5 +25,5 @@ export default function (Vue, { router, head, isClient }) {
       vueRouter: router, // Pass the router instance to automatically sync with router (optional)
       //ignoredViews: ['homepage'] // If router, you can exclude some routes name (case insensitive) (optional)
     })
-  }*/
+  } */
 }
