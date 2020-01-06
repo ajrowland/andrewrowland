@@ -19,11 +19,10 @@
       <div class="post__footer">
         <PostTags :post="$page.post" />
       </div>
-    </div>
 
-    <div class="post-comments">
-      <!-- Add comment widgets here -->
-      <Comments />
+      <div v-if="$page.post.comments" class="post-comments">
+        <vue-disqus shortname="andrewrowland" :identifier="$page.post.title"></vue-disqus>
+      </div>
     </div>
 
     <Author class="post-author" />
@@ -89,6 +88,7 @@ query Post ($id: ID!) {
     description
     content
     cover_image (width: 860, blur: 10)
+    comments
   }
 }
 </page-query>
@@ -153,7 +153,7 @@ query {
 }
 
 .post-comments {
-  padding: calc(var(--space) / 2);
+  margin-top: var(--space);
 
   &:empty {
     display: none;

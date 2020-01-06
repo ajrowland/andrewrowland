@@ -2,6 +2,7 @@
 title: How to generate redirects in Gridsome
 date: 2020-01-01
 published: true
+comments: true
 cover_image: ./images/gridsome.png
 tags: ['JavaScript', 'Gridsome']
 canonical_url: false
