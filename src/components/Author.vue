@@ -8,7 +8,7 @@
     </h1>
 
     <p class="author__intro">
-      I only want to help you...
+      {{ $static.metadata.siteDescription }}
     </p>
 
     <p class="author__links">
@@ -25,6 +25,7 @@
 query {
   metadata {
     siteName
+    siteDescription
   }
 }
 </static-query>
