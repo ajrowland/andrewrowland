@@ -41,6 +41,8 @@ export default {
     PostTags
   },
   metaInfo: function () {
+    const { siteUrl } = this.$page.metadata
+
     const metaData = {
       title: this.$page.post.title,
       meta: [
@@ -53,14 +55,14 @@ export default {
         { property: 'og:type', content: 'article' },
         { property: 'og:title', content: this.$page.post.title },
         { property: 'og:description', content: this.$page.post.description },
-        { property: 'og:url', content: `${this.$static.metadata.siteUrl}${this.$page.post.path}` }
+        { property: 'og:url', content: `${siteUrl}${this.$page.post.path}` }
       ],
       script: [{ src: 'https://platform.twitter.com/widgets.js', async: true }]
     }
 
     if (this.$page.post.cover_image) {
       const { src: imagePath } = this.$page.post.cover_image
-      const imageUrl = `${this.$static.metadata.siteUrl}${imagePath}`
+      const imageUrl = `${siteUrl}${imagePath}`
 
       metaData.meta.push({ name: 'twitter:image', content: imageUrl })
       metaData.meta.push({ property: 'og:image', content: imageUrl })
@@ -88,16 +90,11 @@ query Post ($id: ID!) {
     cover_image (width: 860, blur: 10)
     comments
   }
-}
-</page-query>
-
-<static-query>
-query {
-  metadata {
+  metadata: metadata {
     siteUrl
   }
 }
-</static-query>
+</page-query>
 
 <style lang="scss">
 .post-title {
