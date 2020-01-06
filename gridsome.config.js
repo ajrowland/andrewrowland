@@ -6,7 +6,7 @@
 
 module.exports = {
   siteName: 'Andrew Rowland',
-  siteDescription: 'I only want to help you',
+  siteDescription: 'I only want to help you...',
   siteUrl: 'http://www.andrewrowland.com',
 
   templates: {
@@ -37,6 +37,14 @@ module.exports = {
             create: true
           }
         }
+      }
+    },
+    {
+      use: 'gridsome-plugin-gtm',
+      options: {
+        id: 'GTM-5KQZ3N',
+        enabled: true,
+        debug: false
       }
     }
   ],
