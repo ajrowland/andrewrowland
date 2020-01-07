@@ -13,16 +13,22 @@ Episerver do not provide an API to automate the creation of new indices. As I wa
 
 Using your favourite shell, clone the repo:
 
-    git clone https://github.com/ajrowland/create-episerver-find-index.git
-    cd create-episerver-find-index
+```shell
+git clone https://github.com/ajrowland/create-episerver-find-index.git
+cd create-episerver-find-index
+```
 
 Install dependencies:
 
-    npm install
+```shell
+npm install
+```
 
-You’ll need to create a [developer account for Find](https://find.episerver.com/Account/Register). Once this is done, you can create an index with the following:
+You'll need to create a [developer account for Find](https://find.episerver.com/Account/Register). Once this is done, you can create an index with the following:
 
-    node createindex.js --username [username] --password [password] --indexname [indexname]
+```shell
+node createindex.js --username [username] --password [password] --indexname [indexname]
+```
 
 The script returns the configuration for the newly created index, or an existing index if it already exists.
 

@@ -17,35 +17,37 @@ There doesn 't seem to be too much on Web about this subject. Maybe most .Net de
 
 Below is a simple .Net Web service. Once again, I 've used continents and countries as my simple dataset. Pass a continent to the service, and it will return an array of countries.
 
-    <%@ webservice Language="C#" class="AndrewRowland.Continents" %>
+```csharp
+<%@ webservice Language="C#" class="AndrewRowland.Continents" %>
 
-    using System;
-    using System.Web.Script.Services;
-    using System.Web.Services;
-    using System.Collections;
-    using System.Collections.Specialized;
+using System;
+using System.Web.Script.Services;
+using System.Web.Services;
+using System.Collections;
+using System.Collections.Specialized;
 
-    namespace AndrewRowland
+namespace AndrewRowland
+{
+    [ScriptService]
+    [WebService(Namespace = "AndrewRowland")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    public class Continents
     {
-        [ScriptService]
-        [WebService(Namespace = "AndrewRowland")]
-        [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-        public class Continents
+        [WebMethod(Description="Returns array of countries for a given continent.")]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string[] GetCountries(string continent)
         {
-            [WebMethod(Description="Returns array of countries for a given continent.")]
-            [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-            public string[] GetCountries(string continent)
-            {
-                Hashtable ht = new Hashtable();
+            Hashtable ht = new Hashtable();
 
-                ht.Add("Europe", new string[] {"UK", "France", "Germany"});
-                ht.Add("Africa", new string[] {"South Africa", "Zimbabwe", "Cameroon"});
-                ht.Add("North America", new string[] {"USA", "Canada"});
+            ht.Add("Europe", new string[] {"UK", "France", "Germany"});
+            ht.Add("Africa", new string[] {"South Africa", "Zimbabwe", "Cameroon"});
+            ht.Add("North America", new string[] {"USA", "Canada"});
 
-                return (string[]) ht[continent];
-            }
+            return (string[]) ht[continent];
         }
     }
+}
+```
 
 Note the response format, which is JSON. Originally, I omitted this, and serialized the data as a JSON string using the .Net JavaScriptSerializer class, before returning it.
 
@@ -53,59 +55,65 @@ This resulted in the client having to evaluate the returned string to build an a
 
 To enable the client to call the Web service, I had to add following in my web.config file under the system.web section:
 
-    <webServices>
-        <protocols>
-            <add name="HttpPost"/>
-        </protocols>
-    </webServices>
+```xml
+<webServices>
+    <protocols>
+        <add name="HttpPost"/>
+    </protocols>
+</webServices>
+```
 
 Sample client code that calls the .Net Web service:
 
-    <html>
-    <head>
-        <title>World example</title>
-        <script type="text/javascript" src="/path/to/jquery.js"></script>
-        <script type="text/javascript">
-        $(document).ready(function() {
-            $('#submit').click(function() {
-                $.ajax({
-                    type: "POST",
-                    data: '{continent: "' + $('#txtContinent').val() + '"}',
-                    url: "/services/example.asmx/GetCountries",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function(response) {
-                        var data = (typeof response.d) == 'string' ? eval('(' + response.d + ')') : response.d;
+```html
+<html>
+<head>
+    <title>World example</title>
+    <script type="text/javascript" src="/path/to/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#submit').click(function() {
+            $.ajax({
+                type: "POST",
+                data: '{continent: "' + $('#txtContinent').val() + '"}',
+                url: "/services/example.asmx/GetCountries",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(response) {
+                    var data = (typeof response.d) == 'string' ? eval('(' + response.d + ')') : response.d;
 
-                        $('#result').empty().append('<table border=1><thead><tr></tr></thead><tbody></tbody></table>');
+                    $('#result').empty().append('<table border=1><thead><tr></tr></thead><tbody></tbody></table>');
 
-                        $('<th/>').text($('#txtContinent').val()).appendTo('#result thead tr');
+                    $('<th/>').text($('#txtContinent').val()).appendTo('#result thead tr');
 
-                        for (var i = 0; i < data.length; i ++) {
-                            $('<tr/>').append($('<td/>').text(data[i])).appendTo('#result tbody');
-                        }
-                    },
-                    failure: function(msg) {
-                        $('#result').empty().append(msg);
+                    for (var i = 0; i < data.length; i ++) {
+                        $('<tr/>').append($('<td/>').text(data[i])).appendTo('#result tbody');
                     }
-                });
+                },
+                failure: function(msg) {
+                    $('#result').empty().append(msg);
+                }
             });
         });
-        </script>
-    </head>
-    <body>
+    });
+    </script>
+</head>
+<body>
 
-    <p><label for="txtContinent">Continent</label><br />
-    <input type="text" id="txtContinent" /> <input id="submit" type="button" value="Submit" /></p>
+<p><label for="txtContinent">Continent</label><br />
+<input type="text" id="txtContinent" /> <input id="submit" type="button" value="Submit" /></p>
 
-    <div id="result"></div>
+<div id="result"></div>
 
-    </body>
-    </html>
+</body>
+</html>
+```
 
 Note line 15:
 
-    var data = (typeof response) == 'string' ? eval('(' + response + ')') : response;
+```javascript
+var data = (typeof response) == 'string' ? eval('(' + response + ')') : response;
+```
 
 I added this line so that the data object is correctly evaluated if a serialized JSON string is returned.
 
@@ -116,9 +124,9 @@ There you have it, avoid the Microsoft code bloat, with not a ScriptManager tag 
 ### Andy
 *August 12, 2008 at 5:34 pm*
 
-If you look at line 10 in the HTML example above, the data key of the AJAX request contains a serialised JSON object. I’ve manually serialised the parameters to be sent to the Web service. If your object is more complex, use a JSON stringifier.
+If you look at line 10 in the HTML example above, the data key of the AJAX request contains a serialised JSON object. I've manually serialised the parameters to be sent to the Web service. If your object is more complex, use a JSON stringifier.
 
-The example Web service I’ve provided takes this very simple JSON object to obtain the parameter continent. It then returns a list of countries.
+The example Web service I've provided takes this very simple JSON object to obtain the parameter continent. It then returns a list of countries.
 
 Hope this helps.
 
@@ -161,16 +169,16 @@ I am using .net 2.0 with c# and I am stuggling to get any of these exemples work
 ### paul
 *September 15, 2008 at 9:46 am*
 
-I’m also using .net 2 with C# and would appreciate the revised solution. Thanks in advance.
+I'm also using .net 2 with C# and would appreciate the revised solution. Thanks in advance.
 
 ---
 
 ### Andy
 *September 15, 2008 at 9:46 am*
 
-Seems to be a fair amount of interest in this post. As you can see, I’m stuggling to find the time to update this blog more regularly.
+Seems to be a fair amount of interest in this post. As you can see, I'm stuggling to find the time to update this blog more regularly.
 
-I’ll try to come up with a basic site, and post it here some time this week. I don’t use Visual Studio, so I can’t create a project.
+I'll try to come up with a basic site, and post it here some time this week. I don't use Visual Studio, so I can't create a project.
 
 Thanks gents.
 
@@ -201,7 +209,7 @@ Now I shall try it myself...
 
 Hi there,
 
-if you’re interested in creating a more object oriented proxy for a webservice using jQuery check out my article on:
+if you're interested in creating a more object oriented proxy for a webservice using jQuery check out my article on:
 
 http://yoavniran.wordpress.com/2009/08/02/creating-a-webservice-proxy-with-jquery/
 
@@ -210,7 +218,7 @@ http://yoavniran.wordpress.com/2009/08/02/creating-a-webservice-proxy-with-jquer
 ### Andy
 *August 20, 2009 at 4:17 pm*
 
-Good stuff Yoav. I’m sure your article will be useful to others as well.
+Good stuff Yoav. I'm sure your article will be useful to others as well.
 
 ---
 
@@ -223,19 +231,21 @@ I am trying to use FullCalendar to display events but I am having trouble trying
 
 Heres my server side code
 
-    public string[][] GetEventsForDate(string currentDate)
+```csharp
+public string[][] GetEventsForDate(string currentDate)
+{
+    Hashtable ht = new Hashtable();
+
+    string[][] jaggedArray1 =
     {
-        Hashtable ht = new Hashtable();
+        new string[] {“1″,”Meeting One”,”2009-10-30T08:15:00.000+10:00″,”2009-10-30T10:15:00.000+10:00″},
+        new string[] {“2″,”Meeting Two”,”2009-10-30T12:15:00.000+10:00″,”2009-10-30T13:15:00.000+10:00″},
+        new string[] {“3″,”Meeting Three”,”2009-10-30T02:15:00.000+10:00″,”2009-10-30T03:15:00.000+10:00″}
+    };
 
-        string[][] jaggedArray1 =
-        {
-            new string[] {“1″,”Meeting One”,”2009-10-30T08:15:00.000+10:00″,”2009-10-30T10:15:00.000+10:00″},
-            new string[] {“2″,”Meeting Two”,”2009-10-30T12:15:00.000+10:00″,”2009-10-30T13:15:00.000+10:00″},
-            new string[] {“3″,”Meeting Three”,”2009-10-30T02:15:00.000+10:00″,”2009-10-30T03:15:00.000+10:00″}
-        };
-
-        return jaggedArray1;
-    }
+    return jaggedArray1;
+}
+```
 
 Any ideas?
 
@@ -273,7 +283,7 @@ I am wondering if this works from a static html page outside of the webservice p
 ### Rupesh
 *May 14, 2010 at 4:56 am*
 
-Hi am using Webservice as a different project and when i add a webreference of this in my project. then jquery call does not works. if the asmx file is in the same webapplication project then it works fine. Is there any way to cosume the webservice’s webmethod by puting the web reference of weservice.
+Hi am using Webservice as a different project and when i add a webreference of this in my project. then jquery call does not works. if the asmx file is in the same webapplication project then it works fine. Is there any way to cosume the webservice's webmethod by puting the web reference of weservice.
 
 ---
 
@@ -294,7 +304,7 @@ Here is an example of how to get FullCalendar working in VB.NET using a webservi
 ### Michael Mofokeng
 *September 2, 2010 at 8:19 am*
 
-Hi There. I’ve re-created the example as a project but its not working from my side. It’is doesn’t return a success or failed message either.
+Hi There. I've re-created the example as a project but its not working from my side. It'is doesn't return a success or failed message either.
 
 ---
 
@@ -322,9 +332,9 @@ nice
 ### Nidhi
 *April 19, 2011 at 7:18 pm*
 
-Is it possible to retrieve the user’s identity (authentication) in the web method?
+Is it possible to retrieve the user's identity (authentication) in the web method?
 
-I’m also wondering if user roles can be checked in web methods. If someone has some info or links, please share
+I'm also wondering if user roles can be checked in web methods. If someone has some info or links, please share
 
 ---
 

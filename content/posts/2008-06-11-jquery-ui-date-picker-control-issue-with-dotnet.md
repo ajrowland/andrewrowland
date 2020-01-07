@@ -15,11 +15,15 @@ I build many .net applications that require date entry, so I implement the Date 
 
 This only occurs when using Internet Explorer. Currently, my only solution is to edit the source code. Locate the following code in **jquery-ui.js** or **ui.datepicker.js**:
 
-    inst.input.trigger('change')
+```javascript
+inst.input.trigger('change')
+```
 
 Replace it with:
 
-    if (!$.browser.msie){inst.input.trigger('change')}
+```javascript
+if (!$.browser.msie){inst.input.trigger('change')}
+```
 
 This prevents the change event firing in IE.
 
@@ -62,7 +66,9 @@ In version 1.7.2 of Datepicker, the text to search and replace is different:
 
 The new text to search for is:
 
-    inst.input.trigger(“change”)
+```javascript
+inst.input.trigger("change")
+```
 
 Thanks for your solution!
 
@@ -128,25 +134,27 @@ It should also be applicable to all plugins that experience similar issues, and 
 
 This is an example of my method:
 
-    // Execute on Document ready…
-    $(function() {
+```javascript
+// Execute on Document ready...
+$(function() {
 
-        // Correct for IE problem with ASP Net Validators
-        // Store reference to function with problem, and over-ride it with an empty function
-        WebResource_ValidatorOnChange = ValidatorOnChange;
-        ValidatorOnChange = function(event) { }
+    // Correct for IE problem with ASP Net Validators
+    // Store reference to function with problem, and over-ride it with an empty function
+    WebResource_ValidatorOnChange = ValidatorOnChange;
+    ValidatorOnChange = function(event) { }
 
-        // Initialise date and time picker
-        $(‘#<%= Control.ClientID %>‘).datepicker({
-            configuration:options
-        });
-
-        // Bind call to Validation code to change event of Control
-        $(‘#<%= Control.ClientID %>‘).bind(“change”, function(event) {
-            WebResource_ValidatorOnChange(event);
-        });
-
+    // Initialise date and time picker
+    $(‘#<%= Control.ClientID %>‘).datepicker({
+        configuration:options
     });
+
+    // Bind call to Validation code to change event of Control
+    $(‘#<%= Control.ClientID %>‘).bind(“change”, function(event) {
+        WebResource_ValidatorOnChange(event);
+    });
+
+});
+```
 
 ---
 
@@ -221,7 +229,7 @@ Andrew you saved me a lot of grief!
 ### Gangireddy Sathi
 *August 18, 2011 at 11:57 pm*
 
-Thank you Andrew…
+Thank you Andrew...
 
 ---
 

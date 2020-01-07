@@ -1,6 +1,9 @@
 // Import main css
 import '~/assets/style/index.scss'
 
+// Import Prismjs styles for code
+import 'prismjs/themes/prism-tomorrow.css'
+
 // Import default layout so we don't need to import it to every page
 import DefaultLayout from '~/layouts/Default.vue'
 

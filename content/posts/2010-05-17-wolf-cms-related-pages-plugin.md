@@ -38,7 +38,9 @@ Still amazing! Keep up the good work!
 Hey Andrew, I found a bug in your plugin,
 in the DeleteAllByPage function, you need to change it to
 
-    Record::deleteWhere(__CLASS__, ‘page_id = ? OR related_page_id’, array($page_id, $page_id));
+```php
+Record::deleteWhere(__CLASS__, ‘page_id = ? OR related_page_id’, array($page_id, $page_id));
+```
 
 Because you also need to delete all of the records of the pages linked to the deleted page. When you get the relations, you get the url manually… but if you give it an id of a page that was deleted, it loops forever. So when a page is deleted, make sure you delete it’s entries and the entries of the pages linking to it.
 
@@ -49,7 +51,9 @@ Because you also need to delete all of the records of the pages linked to the de
 
 Sorry, there was a mistake in the line I sent you… this is the fix:
 
-    Record::deleteWhere(__CLASS__, ‘page_id = ? OR related_page_id = ?’, array($page_id, $page_id));
+```php
+Record::deleteWhere(__CLASS__, ‘page_id = ? OR related_page_id = ?’, array($page_id, $page_id));
+```
 
 ---
 
@@ -79,17 +83,19 @@ Christoph
 
 You should by able to access the parent like you would any page object:
 
-    <?php
-    $relations = get_relations($this->id);
+```php
+<?php
+$relations = get_relations($this->id);
 
-    if (!empty($relations)){
-      echo '<ul>';
-      foreach ($relations as $related){
-        echo '<li>' . $related->parent()->title() . ': ' . $related->link() . '</li>';
-      }
-      echo '</ul>';
-    }
-    ?>
+if (!empty($relations)){
+  echo '<ul>';
+  foreach ($relations as $related){
+    echo '<li>' . $related->parent()->title() . ': ' . $related->link() . '</li>';
+  }
+  echo '</ul>';
+}
+?>
+```
 
 But I still think there is a problem with incorrectly initialised objects when obtained by the findById function.
 

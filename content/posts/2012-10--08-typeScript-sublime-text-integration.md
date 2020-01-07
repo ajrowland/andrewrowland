@@ -15,31 +15,37 @@ First install theNode.jsmsi package. Once installed, open a command prompt and t
 
 Now grab the Sublime Text syntax hightlight definition file from MSDN. Open the zip and copy the *typescript.tmplanguage* file to your Sublime Text user packages directory. Mine is located in:
 
-    C:\Users\arowland\AppData\Roaming\Sublime Text 2\Packages\User\
+```
+C:\Users\arowland\AppData\Roaming\Sublime Text 2\Packages\User\
+```
 
 Now open Sublime Text. Select **Tools -> Build System -> New Build System**. Paste in the following:
 
-    {
-        "selector": "source.ts",
-        "cmd": ["tsc.cmd", "$file"],
-        "file_regex": "^(.+?) \\((\\d+),(\\d+)\\): (.+)$"
-    }
+```json
+{
+    "selector": "source.ts",
+    "cmd": ["tsc.cmd", "$file"],
+    "file_regex": "^(.+?) \\((\\d+),(\\d+)\\): (.+)$"
+}
+```
 
 Save this file. Now you can create a new JavaScript file, and save with the .ts extension. The editor will highlight TypeScript code, and allow you to compile to JavaScript by pressing **Ctrl+B**. The build process will create the compiled JavaScript file in the same directory as the source TypeScript.
 
-## 9 thoughts on “TypeScript Sublime Text integration”
+## 9 thoughts on "TypeScript Sublime Text integration"
 
 ### Ryan Montgomery
 *October 10, 2012 at 3:49 pm*
 
 If you installed typescript via npm then this will work on mac osx.
 
-    {
-        “selector”: “source.ts”,
-        “cmd”: [“tsc”, “$file”],
-        “path”: “/usr/local/bin”,
-        “file_regex”: “^(.+?) \\((\\d+),(\\d+)\\): (.+)$”
-    }
+```json
+{
+    "selector": "source.ts",
+    "cmd": ["tsc", "$file"],
+    "path": "/usr/local/bin",
+    "file_regex": "^(.+?) \\((\\d+),(\\d+)\\): (.+)$"
+}
+```
 
 ---
 
@@ -48,7 +54,9 @@ If you installed typescript via npm then this will work on mac osx.
 
 Thanks for this, I had to ditch the .cmd in line 3 of the build system so it reads:
 
-    “cmd”: [“tsc”, “$file”],
+```json
+"cmd": ["tsc", "$file"],
+```
 
 But being my first time adding to my Sublime2 installation, it was infinitely better than no instructions and I now have beautifully highlighted typescript 🙂
 
@@ -87,14 +95,16 @@ Hope I did it right... feel free to modify
 ### Adongo
 *June 6, 2016 at 10:33 pm*
 
-    {
-        “cmd”: [“tsc”,”$file”],
-        “file_regex”: “(.*\\.ts?)\\s\\(([0-9]+)\\,([0-9]+)\\)\\:\\s(…*?)$”,
-        “selector”: “source.ts”,
-        “windows”: {
-            “cmd”: [“tsc.cmd”, “$file”]
-        }
+```json
+{
+    "cmd": ["tsc","$file"],
+    "file_regex": "(.*\\.ts?)\\s\\(([0-9]+)\\,([0-9]+)\\)\\:\\s(…*?)$",
+    "selector": "source.ts",
+    "windows": {
+        "cmd": ["tsc.cmd", "$file"]
     }
+}
+```
 
 ---
 

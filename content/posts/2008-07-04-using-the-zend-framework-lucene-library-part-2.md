@@ -4,12 +4,12 @@ date: 2008-07-04
 published: true
 tags: ['CodeIgniter', 'PHP']
 canonical_url: false
-description: "Note: Since this article was written I’ve moved to WordPress, and have not implemented the example code listed below.
+description: "Note: Since this article was written I've moved to WordPress, and have not implemented the example code listed below.
 
 In a previous article I talked about using a library from the Zend framework to create a site search. As you try out this functionality using the search box, above right."
 ---
 
-**Note**: Since this article was written I’ve moved to WordPress, and have not implemented the example code listed below.
+**Note**: Since this article was written I've moved to WordPress, and have not implemented the example code listed below.
 
 In a previous article I talked about using a library from the Zend framework to create a site search. As you try out this functionality using the search box, above right.
 
@@ -17,109 +17,115 @@ I never finished the article, so I'll explain here how I implemented this using 
 
 Below is an example controller class that shows how I constructed the search index by pulling articles out of the database. My actual class calls security methods that require authentication before performing any of these methods. I left them out of the listing to keep it short and sweet. You will have to alter the code to allow for the difference in database schema, and to suit your intended available search criteria.
 
-    <?php
-    class Search extends Controller {
+```php
+<?php
+class Search extends Controller {
 
-        function Search()
-        {
-            parent::Controller();
+    function Search()
+    {
+        parent::Controller();
 
-            // Load Zend Lucene library.  See previous article.
-            $this->load->library('zend');
-            $this->zend->load( 'Zend/Search/Lucene');
+        // Load Zend Lucene library.  See previous article.
+        $this->load->library('zend');
+        $this->zend->load( 'Zend/Search/Lucene');
 
-            // Location of search index.  Used by all Search controller methods.
-            $this->search_index = APPPATH . 'search/index';
-        }
-
-        function reindex()
-        {
-            // Create index.  Will delete any existing index.
-            $index = Zend_Search_Lucene::create($this->search_index);
-
-            // Obtain all articles.
-            $query = $this->db->get('articles');
-
-            // Loop through articles, adding an index for each one.
-            foreach ($query->result() as $article)
-            {
-                // Create Lucene document for this article.
-                $doc = new Zend_Search_Lucene_Document();
-
-                // Add required fields.
-                $doc->addField(Zend_Search_Lucene_Field::Text('title', $article->title));
-                $doc->addField(Zend_Search_Lucene_Field::Text('subtitle', $subtitle));
-                $doc->addField(Zend_Search_Lucene_Field::Text('category', $category_list));
-                $doc->addField(Zend_Search_Lucene_Field::Text('path', '/article/display/' . $article->path));
-                $doc->addField(Zend_Search_Lucene_Field::UnStored('content', $article->summary . $article->text));
-
-                // Add docuument to index.
-                $index->addDocument($doc);
-
-                echo 'Added ' . $item->title . ' to index.<br />';
-            }
-
-            $index->optimize();
-        }
-
-        function optimize()
-        {
-            $index = Zend_Search_Lucene::open($this->search_index);
-            $index->optimize();
-
-            echo '<p>Index optimized.</p>';
-        }
+        // Location of search index.  Used by all Search controller methods.
+        $this->search_index = APPPATH . 'search/index';
     }
+
+    function reindex()
+    {
+        // Create index.  Will delete any existing index.
+        $index = Zend_Search_Lucene::create($this->search_index);
+
+        // Obtain all articles.
+        $query = $this->db->get('articles');
+
+        // Loop through articles, adding an index for each one.
+        foreach ($query->result() as $article)
+        {
+            // Create Lucene document for this article.
+            $doc = new Zend_Search_Lucene_Document();
+
+            // Add required fields.
+            $doc->addField(Zend_Search_Lucene_Field::Text('title', $article->title));
+            $doc->addField(Zend_Search_Lucene_Field::Text('subtitle', $subtitle));
+            $doc->addField(Zend_Search_Lucene_Field::Text('category', $category_list));
+            $doc->addField(Zend_Search_Lucene_Field::Text('path', '/article/display/' . $article->path));
+            $doc->addField(Zend_Search_Lucene_Field::UnStored('content', $article->summary . $article->text));
+
+            // Add docuument to index.
+            $index->addDocument($doc);
+
+            echo 'Added ' . $item->title . ' to index.<br />';
+        }
+
+        $index->optimize();
+    }
+
+    function optimize()
+    {
+        $index = Zend_Search_Lucene::open($this->search_index);
+        $index->optimize();
+
+        echo '<p>Index optimized.</p>';
+    }
+}
+```
 
 To utilise the index a result method is required:
 
-    function result()
+```php
+function result()
+{
+    // Create empty array, in case there are no results.
+    $data['results'] = array();
+
+    // If a search_query parameter has been posted, search the index.
+    if ($this->input->post('search_query'))
     {
-        // Create empty array, in case there are no results.
-        $data['results'] = array();
+        $index = Zend_Search_Lucene::open($this->search_index);
 
-        // If a search_query parameter has been posted, search the index.
-        if ($this->input->post('search_query'))
-        {
-            $index = Zend_Search_Lucene::open($this->search_index);
-
-            // Get results.
-            $data['results'] = $index->find($this->input->post('search_query'));
-        }
-
-        // Load view, and populate with results.
-        $this->load->view('search_result_view', $data);
+        // Get results.
+        $data['results'] = $index->find($this->input->post('search_query'));
     }
+
+    // Load view, and populate with results.
+    $this->load->view('search_result_view', $data);
+}
+```
 
 And, of course, a view is required to display the results:
 
-    <html>
-    <head>
-        <title>Search results</title>
-    </head>
-    <body>
+```html
+<html>
+<head>
+    <title>Search results</title>
+</head>
+<body>
 
-    <h1>Search results</h1>
+<h1>Search results</h1>
 
-    <?php if (empty($_POST['search_query'])):?>
-    <p>No search query submitted.</p>
+<?php if (empty($_POST['search_query'])):?>
+<p>No search query submitted.</p>
+<?php else:?>
+    <?php if (count($results)):?>
+<p><?php echo count($results) ?> result(s) returned for query: <?php echo $_POST['search_query'];?></p>
+<ul>
+    <?php foreach($results as $result):?>
+    <li><?=anchor(site_url($result->path), $result->title);?> (<?php echo round($result->score, 2) * 100;?>%)</li>
+    <?php endforeach;?>
+</ul>
     <?php else:?>
-        <?php if (count($results)):?>
-    <p><?php echo count($results) ?> result(s) returned for query: <?php echo $_POST['search_query'];?></p>
-    <ul>
-        <?php foreach($results as $result):?>
-        <li><?=anchor(site_url($result->path), $result->title);?> (<?php echo round($result->score, 2) * 100;?>%)</li>
-        <?php endforeach;?>
-    </ul>
-        <?php else:?>
-    <p>No results were returned for query: <?php echo $_POST['search_query'];?></p>
-        <?php endif;?>
+<p>No results were returned for query: <?php echo $_POST['search_query'];?></p>
     <?php endif;?>
+<?php endif;?>
 
-    </body>
-    </html>
+</body>
+</html>
+```
 
-## 20 thoughts on “Using the Zend framework Lucene library Part 2”
+## 20 thoughts on "Using the Zend framework Lucene library Part 2"
 
 ### Jeff
 *November 14, 2008 at 8:07 am*
@@ -133,9 +139,9 @@ Great post! Keep it up.
 
 Hi Andrew,
 
-Many thanks for these articles, after a little tweakage I managed to get it all going on a project I’m working on. (I’m pretty new to CI/PHP/Apache having come from ASP/VBScript/IIS [Yuk, I know..])
+Many thanks for these articles, after a little tweakage I managed to get it all going on a project I'm working on. (I'm pretty new to CI/PHP/Apache having come from ASP/VBScript/IIS [Yuk, I know..])
 
-However, I have a question: At the moment, same as your tutorial, I’m searching on only one table in the db, a table called Items (news, events, careers) which is fine but I need to be able to index a number of other tables. What I’m mostly wondering about is how to set the link in the result, I presume the rest is just replicating the code I already have for indexing?
+However, I have a question: At the moment, same as your tutorial, I'm searching on only one table in the db, a table called Items (news, events, careers) which is fine but I need to be able to index a number of other tables. What I'm mostly wondering about is how to set the link in the result, I presume the rest is just replicating the code I already have for indexing?
 
 Have you any insights, experience, wisdom, links? Any help would be greatly appreciated.
 
@@ -150,9 +156,9 @@ Rob.
 
 Andrew,
 
-Many thanks for your swift and insightful reply.. I haven’t had a chance to test it yet but your code and explanations make sense and have cleared up a lot for me.
+Many thanks for your swift and insightful reply.. I haven't had a chance to test it yet but your code and explanations make sense and have cleared up a lot for me.
 
-Thanks again for your time, you’ve saved me a lot of mine!
+Thanks again for your time, you've saved me a lot of mine!
 
 Cheers!
 
@@ -183,11 +189,11 @@ Hi Andrew
 
 I mean in the result list I would like to show only the line near the search term found.
 
-I’m testing with zend frame sample code ZendFramework-1.7.6demosZendSearchLucenefeed-searchsearch-index.php
+I'm testing with zend frame sample code ZendFramework-1.7.6demosZendSearchLucenefeed-searchsearch-index.php
 
 At line 41 of search-index.php, trim(substr($hit->$field,0,76)). It is only show the first 76 characters of result text.
 
-I’m afraid that the search term may not include within first 76 characters.
+I'm afraid that the search term may not include within first 76 characters.
 I mean if the search term found at the postition of 100th character, I want to show the text near 100th character like google result.
 
 thanks
@@ -208,7 +214,7 @@ You will need to store the content as a text field, so it can be used by the Zen
 
 The main problem you will have, is restricting the amount of content returned, as you will not want the entire document, only the sentence(s) in which the highlighed search terms appear.
 
-I had a go quick on my site, and made it work, but did not get around to the final problem I’ve, er, highlighed.
+I had a go quick on my site, and made it work, but did not get around to the final problem I've, er, highlighed.
 
 ---
 
@@ -249,11 +255,13 @@ hi andrew,
 i have a problem while using your method code. i have only included exception .php file and Zend/Search folder in my application/libraries. i get an error
 Message:
 
-    CI_Zend::require_once(Zend/Search/Lucene.php) [ci-zend.require-once]: failed to open stream: No such file or directory
+```shell
+CI_Zend::require_once(Zend/Search/Lucene.php) [ci-zend.require-once]: failed to open stream: No such file or directory
 
-    Filename: libraries/Zend.php
+Filename: libraries/Zend.php
 
-    Line Number: 35
+Line Number: 35
+```
 
 if u can please help me .
 
@@ -265,75 +273,89 @@ if u can please help me .
 hi,
 thanks for your reply.
 
-    /system/application/libraries/Zend/Search/Lucene.php does exist.
+```shell
+/system/application/libraries/Zend/Search/Lucene.php does exist.
+```
 
 i m on windows with XAMPP. i m also using CI 1.71. but i read on codeigniter/forums that u have to write
 
-    $this->load->library(‘zend’);
-    $this->zend->load( ‘Zend/Search/Lucene’);
+```php
+$this->load->library('zend');
+$this->zend->load('Zend/Search/Lucene');
+```
 
 instead of
 
-    $this->load->library(‘zend’, ‘Zend/Search/Lucene’);
+```php
+    $this->load->library('zend', 'Zend/Search/Lucene');
+```
 
 in the controller.
 
 also i have upgraded log_threshold to 4. i have checked the log and classes are successfully initialized and loaded...
 
-i have changed the reindex function according to my database. i have a “event” table in my DB. and it has a “Event_name” field. so reindex looks like
+i have changed the reindex function according to my database. i have a "event" table in my DB. and it has a "Event_name" field. so reindex looks like
 
-    function reindex()
+```php
+function reindex()
+{
+    // Create index. Will delete any existing index.
+    $this->create();
+
+    // Obtain all events.
+    $query = $this->db->get('event');
+
+    // Loop through articles, adding an index for each one.
+    foreach ($query->result() as $event)
     {
-        // Create index. Will delete any existing index.
-        $this->create();
+        // Create Lucene document for this article.
+        $doc = new Zend_Search_Lucene_Document();
 
-        // Obtain all events.
-        $query = $this->db->get(‘event’);
+        // Add required fields.
+        $doc->addField(Zend_Search_Lucene_Field::Text('eventname', $event->Event_name));
 
-        // Loop through articles, adding an index for each one.
-        foreach ($query->result() as $event)
-        {
-            // Create Lucene document for this article.
-            $doc = new Zend_Search_Lucene_Document();
+        $index->addDocument($doc);
 
-            // Add required fields.
-            $doc->addField(Zend_Search_Lucene_Field::Text(‘eventname’, $event->Event_name));
-
-            $index->addDocument($doc);
-
-            echo ‘Added ‘ . $item->eventname . ‘ to index.
-            ‘;
-        }
-
-        $index->optimize();
+        echo 'Added ' . $item->eventname . ' to index.
+        ';
     }
+
+    $index->optimize();
+}
+```
 
 and i get a long long error
 
-    Fatal error: Uncaught exception ‘Zend_Search_Lucene_Exception’ with message ‘Index doesn’t exists in the specified directory.’ in C:xampphtdocscodeignitersystemapplicationlibrariesZendSearchLucene.php:547 Stack trace: #0 C:xampphtdocscodeignitersystemapplicationlibrariesZendSearchLucene.php(214): Zend_Search_Lucene->__construct(‘C:xampphtdocs…’, false) #1 C:xampphtdocscodeignitersystemapplicationcontrollerssearch.php(70): Zend_Search_Lucene::open(‘C:xampphtdocs…’) #2 C:xampphtdocscodeignitersystemcodeigniterCodeIgniter.php(233): Search->result() #3 C:xampphtdocscodeigniterindex.php(115): require_once(‘C:xampphtdocs…’) #4 {main} thrown in C:xampphtdocscodeignitersystemapplicationlibrariesZendSearchLucene.php on line 547
+```shell
+Fatal error: Uncaught exception 'Zend_Search_Lucene_Exception' with message 'Index doesn't exists in the specified directory.' in C:xampphtdocscodeignitersystemapplicationlibrariesZendSearchLucene.php:547 Stack trace: #0 C:xampphtdocscodeignitersystemapplicationlibrariesZendSearchLucene.php(214): Zend_Search_Lucene->__construct('C:xampphtdocs...', false) #1 C:xampphtdocscodeignitersystemapplicationcontrollerssearch.php(70): Zend_Search_Lucene::open('C:xampphtdocs...') #2 C:xampphtdocscodeignitersystemcodeigniterCodeIgniter.php(233): Search->result() #3 C:xampphtdocscodeigniterindex.php(115): require_once('C:xampphtdocs...') #4 {main} thrown in C:xampphtdocscodeignitersystemapplicationlibrariesZendSearchLucene.php on line 547
+```
 
 ---
 
 ### Andy
 *May 17, 2009 at 4:19 am*
 
-It looks like an error in my code. I’ve changed the way the library is loaded, as you suggested. Removed the create method, and have created the index directly within the reindex method.
+It looks like an error in my code. I've changed the way the library is loaded, as you suggested. Removed the create method, and have created the index directly within the reindex method.
 
 ---
 
 ### john
 *May 21, 2009 at 6:51 am*
 
-    A PHP Error was encountered
-    Severity: Notice
+```shell
+A PHP Error was encountered
+Severity: Notice
+```
 
-I got this error when i try ur code. i spend few days but i still can’t fix it. please help
+I got this error when i try ur code. i spend few days but i still can't fix it. please help
 
-    Message: iconv_strlen() [function.iconv-strlen]: Wrong charset, conversion from `’ to `UCS-4LE’ is not allowed
+```shell
+Message: iconv_strlen() [function.iconv-strlen]: Wrong charset, conversion from `' to `UCS-4LE' is not allowed
 
-    Filename: Search/QueryLexer.php
+Filename: Search/QueryLexer.php
 
-    Line Number: 343
+Line Number: 343
+```
 
 ---
 
@@ -358,15 +380,17 @@ there is no problem width the code, the problem here is that the search index is
 
 This works fine on my local, but as soon as i put it on my live server i get:
 
-    A PHP Error was encountered
+```shell
+A PHP Error was encountered
 
-    Severity: Warning
+Severity: Warning
 
-    Message: CI_Zend::require_once(Zend/Search/Lucene.php) [ci-zend.require-once]: failed to open stream: No such file or directory
+Message: CI_Zend::require_once(Zend/Search/Lucene.php) [ci-zend.require-once]: failed to open stream: No such file or directory
 
-    Filename: libraries/Zend.php
+Filename: libraries/Zend.php
 
-    Line Number: 51
+Line Number: 51
+```
 
 ---
 
@@ -382,7 +406,9 @@ Thank you, I have the Lucene searching within the CI framework now, but do you k
 
 pls help me...
 
-    Fatal error: Class ‘Zend_Search_Lucene’ not found
+```shell
+Fatal error: Class 'Zend_Search_Lucene' not found
+```
 
 ---
 
@@ -396,7 +422,9 @@ very helpful resource. thanks for sharing.
 ### annony
 *August 8, 2011 at 9:57 am*
 
-Index doesnâ€™t exists in the specified directory::
+```shell
+Index doesn't exists in the specified directory::
+```
 
 I work on windows, and may be its due to file permission. Anyway, I tried using create first and then open . See,
 http://framework.zend.com/manual/1.11/en/learning.lucene.index-opening.html
@@ -408,17 +436,19 @@ Once created , I removed create statement, and worked fine
 ### Leonardo Siagian
 *March 10, 2014 at 5:18 am*
 
-how if i use category in searching? it’s mean, i select firstly category before searching.
+How if i use category in searching? it's mean, i select firstly category before searching.
 
-i try this code:
+I try this code:
 
-    $category= $this->input->post(‘category’);
-    $keyword =strtolower($this->input->post(‘keyword’));
+```php
+$category= $this->input->post('category');
+$keyword =strtolower($this->input->post('keyword'));
 
-    $query = new Zend_Search_Lucene_Search_Query_MultiTerm();
-    $query->addTerm(new Zend_Search_Lucene_Index_Term($keyword,’content_article’),true);
-    $query->addTerm(new Zend_Search_Lucene_Index_Term($category,category_article’), true);
-    $data[‘results’] = $index->find($query);
+$query = new Zend_Search_Lucene_Search_Query_MultiTerm();
+$query->addTerm(new Zend_Search_Lucene_Index_Term($keyword,'content_article'),true);
+$query->addTerm(new Zend_Search_Lucene_Index_Term($category,category_article'), true);
+$data['results'] = $index->find($query);
+```
 
 according that code, i just can use single word as the keyword, and can not use(find) more than one word (phrase).
 

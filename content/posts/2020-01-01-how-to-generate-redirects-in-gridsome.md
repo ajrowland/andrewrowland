@@ -23,50 +23,53 @@ I doubt anyone would have bookmarked any, but it would be nice to retain the old
 
 So for each post, we need to render an additional file for the old URL.  This requires an amendment to the **gridsome.config.js** configuration. For a Post type this involves switching to an array of config objects.  In this case, I've added an additional configuration for the redirect:
 
-    module.exports = {
-      templates: {
-        Post: [
-          {
-            path: '/:title'
-          },
-          {
-            name: 'redirects',
-            path: '/article/display/:title',
-            component: './src/templates/Redirect.vue'
-          }
-        ],
-        Tag: '/tag/:id'
+```javascript
+module.exports = {
+  templates: {
+    Post: [
+      {
+        path: '/:title'
+      },
+      {
+        name: 'redirects',
+        path: '/article/display/:title',
+        component: './src/templates/Redirect.vue'
       }
-    }
+    ],
+    Tag: '/tag/:id'
+  }
+}
+```
 
 If you look at the component property I've added a template for the rendered file. It's a minimal template designed to output the appropriate meta tag to perform the redirect:
 
+```javascript
+<template></template>
 
-    <template></template>
-
-    <script>
-    export default {
-      metaInfo() {
-        return {
-            title: `Redirecting to ${this.$page.post.path}`,
-            meta: [
-                { 'http-equiv': 'refresh', content: `0; URL=${this.$page.post.path}`}
-            ],
-            link: [
-                { rel: 'canonical', href: `http://www.andrewrowland.com${this.$page.post.path}` }
-            ]
-        }
-      }
+<script>
+export default {
+  metaInfo() {
+    return {
+        title: `Redirecting to ${this.$page.post.path}`,
+        meta: [
+            { 'http-equiv': 'refresh', content: `0; URL=${this.$page.post.path}`}
+        ],
+        link: [
+            { rel: 'canonical', href: `http://www.andrewrowland.com${this.$page.post.path}` }
+        ]
     }
-    </script>
+  }
+}
+</script>
 
-    <page-query>
-    query Redirect ($id: ID!) {
-      post: post (id: $id) {
-        path
-      }
-    }
-    </page-query>
+<page-query>
+query Redirect ($id: ID!) {
+  post: post (id: $id) {
+    path
+  }
+}
+</page-query>
+```
 
 Now, when we run a build, two files are generated for each post.  One for the post itself, and one for the redirect.
 
