@@ -139,7 +139,7 @@ Note that we can override any of the default options we've added in the plugin c
 npm run develop
 ```
 
-Open a browser and visit http://localhost:8080/___explore. The will open the GraphQL playground. Here was can perform a query to check if our data has been imported. Run the following:
+Open a browser and visit http://localhost:8080/___explore. The will open the GraphQL playground. Here was can perform a query to check if our data has been imported. Run the following GraphQL query:
 
 ```json
 {
