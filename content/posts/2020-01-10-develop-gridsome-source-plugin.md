@@ -46,7 +46,7 @@ class BikeWiseSource {
         timeout: 5000
       })
 
-      // This is executed when any Axious request is made.
+      // This is executed when any Axios request is made.
       bikeWiseApi.interceptors.request.use(request => {
         // Add parameters for each request.
         request.params = {
