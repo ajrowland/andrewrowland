@@ -39,6 +39,7 @@ query ($page: Int) {
   metadata: metadata {
     siteName
     siteDescription
+    siteUrl
   }
 }
 </page-query>
