@@ -20,7 +20,7 @@ cd source-bikewise
 npm init
 ```
 
-Fill out the questions. When it comes to the package name call it `@gridsome/source-bikewise`. This appears to be the naming convention if you decide to publish your plugin. I why wouldn't you?
+Fill out the questions. When it comes to the package name call it `@gridsome/source-bikewise`, and for the keywords property enter `gridsome-plugin`. This appears to be the naming convention if you decide to publish your plugin. And why wouldn't you?
 
 Create a **index.js** file, and add the following plugin code:
 
