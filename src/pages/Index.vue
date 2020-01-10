@@ -36,6 +36,10 @@ query ($page: Int) {
       }
     }
   }
+  metadata: metadata {
+    siteName
+    siteDescription
+  }
 }
 </page-query>
 
@@ -50,8 +54,27 @@ export default {
     Author,
     PostCard
   },
-  metaInfo: {
-    title: 'Home'
+  metaInfo: function () {
+    const { siteUrl } = this.$page.metadata
+
+    return {
+      title: this.$page.metadata.siteName,
+      meta: [
+        { name: 'description', content: this.$page.metadata.siteDescription },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:description', content: this.$page.metadata.siteDescription },
+        { name: 'twitter:title', content: this.$page.metadata.siteName },
+        { name: 'twitter:site', content: '@andyjrowland' },
+        { name: 'twitter:creator', content: '@andyjrowland' },
+        { name: 'twitter:image', content: `${siteUrl}/assets/images/author.png`},
+        { property: 'og:type', content: 'article' },
+        { property: 'og:title', content: this.$page.metadata.siteName },
+        { property: 'og:description', content: this.$page.metadata.siteDescription },
+        { property: 'og:url', content: `${siteUrl}` },
+        { property: 'og:image', content: `${siteUrl}/assets/images/author.png`}
+      ],
+      script: [{ src: 'https://platform.twitter.com/widgets.js', async: true }]
+    }
   }
 }
 </script>
