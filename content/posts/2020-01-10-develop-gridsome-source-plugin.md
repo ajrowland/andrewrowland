@@ -221,6 +221,6 @@ query {
 </page-query>
 ```
 
-Refresh the home page, and if all is well we have a list of links to our incidents pages.
+Refresh the home page, and if all is well we have a list of links to our incident pages.
 
 All done. Once you've built a working Gridsome source plugin you can now [publish](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry) your package, so it can be installed in the usual way.
