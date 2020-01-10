@@ -12,7 +12,7 @@ One method of importing data into a [Gridsome](https://gridsome.org/) build is t
 
 Most likely you have used one of the many [plugins](https://gridsome.org/plugins/) available.  This involves installing an NPM package, and configuring Gridsome to use it by updating the **gridsome.config.js** file. We will create a project for the NPM package, but what we don't want to do is continually build and publish a package whilst developing.  The trick is to use [npm link](https://docs.npmjs.com/cli/link.html).
 
-I'm going to base my example on the [BikeWise API](https://www.bikewise.org/documentation/api_v2). This endpoint allows us to retrieve data on incidents involving bikes. No particular reason why I've chosen this, other than I wanted to create something the uses real data. First, lets create the project for our example source plugin:
+I'm going to base my example on the [BikeWise API](https://www.bikewise.org/documentation/api_v2). This endpoint allows us to retrieve data on incidents involving bikes. No particular reason why I've chosen this, other than I wanted to create something that uses real data. First, lets create the project for our example source plugin:
 
 ```shell
 mkdir source-bikewise
