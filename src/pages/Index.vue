@@ -59,7 +59,7 @@ export default {
     const { siteUrl } = this.$page.metadata
 
     return {
-      title: this.$page.metadata.siteName,
+      title: 'Home',
       meta: [
         { name: 'description', content: this.$page.metadata.siteDescription },
         { name: 'twitter:card', content: 'summary_large_image' },
