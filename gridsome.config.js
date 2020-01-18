@@ -46,6 +46,16 @@ module.exports = {
         enabled: true,
         debug: false
       }
+    },
+    {
+      use: '@gridsome/plugin-sitemap',
+      options: {
+        exclude: [
+          '/article/display/*',
+          '/tag/*',
+          '/\\d+'
+        ]
+      }
     }
   ],
 
