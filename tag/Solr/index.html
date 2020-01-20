@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html data-html-server-rendered="true" lang="en" data-vue-tag="%7B%22lang%22:%7B%22ssr%22:%22en%22%7D%7D">
   <head>
-    <title>Solr - Andrew Rowland</title><meta name="gridsome:hash" content="7441634b8a8e2ee7622197322d9cc55b3428f912"><meta data-vue-tag="ssr" charset="utf-8"><meta data-vue-tag="ssr" name="generator" content="Gridsome v0.7.12"><meta data-vue-tag="ssr" data-key="viewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta data-vue-tag="ssr" data-key="format-detection" name="format-detection" content="telephone=no"><meta data-vue-tag="ssr" name="theme-color" content="#ffffff"><meta data-vue-tag="ssr" name="apple-mobile-web-app-capable" content="yes"><meta data-vue-tag="ssr" name="apple-mobile-web-app-status-bar-style" content="default"><meta data-vue-tag="ssr" name="apple-mobile-web-app-title" content="Andrew Rowland"><meta data-vue-tag="ssr" name="msapplication-TileColor" content="undefined"><meta data-vue-tag="ssr" data-key="description" name="description" content="I only want to help you..."><link data-vue-tag="ssr" rel="icon" href="data:,"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="16x16" href="/assets/static/favicon.ce0531f.ac64c76abcd4710b88c6efd7d6aa8915.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="32x32" href="/assets/static/favicon.ac8d93a.ac64c76abcd4710b88c6efd7d6aa8915.png"><link data-vue-tag="ssr" rel="manifest" href="\manifest.json"><link rel="preload" href="/assets/css/0.styles.0d0757b2.css" as="style"><link rel="preload" href="/assets/js/app.3631859a.js" as="script"><link rel="preload" href="/assets/js/page--src-templates-tag-vue.01bcf8ad.js" as="script"><link rel="prefetch" href="/assets/js/page--src-pages-404-vue.d70331bb.js"><link rel="prefetch" href="/assets/js/page--src-pages-index-vue.32b90323.js"><link rel="prefetch" href="/assets/js/page--src-templates-post-vue.3dcd8bdf.js"><link rel="prefetch" href="/assets/js/page--src-templates-redirect-vue.14531589.js"><link rel="stylesheet" href="/assets/css/0.styles.0d0757b2.css"><noscript data-vue-tag="ssr"><style>.g-image--loading{display:none;}</style></noscript>
+    <title>Solr - Andrew Rowland</title><meta name="gridsome:hash" content="6de5e8520df2be504897e7978df959570fbc1520"><meta data-vue-tag="ssr" charset="utf-8"><meta data-vue-tag="ssr" name="generator" content="Gridsome v0.7.12"><meta data-vue-tag="ssr" data-key="viewport" name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta data-vue-tag="ssr" data-key="format-detection" name="format-detection" content="telephone=no"><meta data-vue-tag="ssr" name="theme-color" content="#ffffff"><meta data-vue-tag="ssr" name="apple-mobile-web-app-capable" content="yes"><meta data-vue-tag="ssr" name="apple-mobile-web-app-status-bar-style" content="default"><meta data-vue-tag="ssr" name="apple-mobile-web-app-title" content="Andrew Rowland"><meta data-vue-tag="ssr" name="msapplication-TileColor" content="undefined"><meta data-vue-tag="ssr" data-key="description" name="description" content="I only want to help you..."><link data-vue-tag="ssr" rel="icon" href="data:,"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="16x16" href="/assets/static/favicon.ce0531f.ac64c76abcd4710b88c6efd7d6aa8915.png"><link data-vue-tag="ssr" rel="icon" type="image/png" sizes="32x32" href="/assets/static/favicon.ac8d93a.ac64c76abcd4710b88c6efd7d6aa8915.png"><link data-vue-tag="ssr" rel="manifest" href="\manifest.json"><link rel="preload" href="/assets/css/0.styles.0d0757b2.css" as="style"><link rel="preload" href="/assets/js/app.58d93565.js" as="script"><link rel="preload" href="/assets/js/page--src-templates-tag-vue.dfc7ad95.js" as="script"><link rel="prefetch" href="/assets/js/page--src-pages-404-vue.d70331bb.js"><link rel="prefetch" href="/assets/js/page--src-pages-index-vue.848cef19.js"><link rel="prefetch" href="/assets/js/page--src-templates-post-vue.6ec19baa.js"><link rel="prefetch" href="/assets/js/page--src-templates-redirect-vue.accebe17.js"><link rel="stylesheet" href="/assets/css/0.styles.0d0757b2.css"><noscript data-vue-tag="ssr"><style>.g-image--loading{display:none;}</style></noscript>
+    <link rel="dns-prefetch" href="https://storage.googleapis.com">
   </head>
   <body >
     <script>
-      // Add dark / light detection that runs before Vue.js load. Borrowed from overreacted.io
       (function() {
-        window.__onThemeChange = function() {};
+        window.__onThemeChange = function() {}
         function setTheme(newTheme) {
-          window.__theme = newTheme;
-          preferredTheme = newTheme;
-          document.body.setAttribute('data-theme', newTheme);
-          window.__onThemeChange(newTheme);
+          window.__theme = newTheme
+          preferredTheme = newTheme
+          document.body.setAttribute('data-theme', newTheme)
+          window.__onThemeChange(newTheme)
         }
 
         var preferredTheme;
         try {
-          preferredTheme = localStorage.getItem('theme') || 'dark';
+          preferredTheme = localStorage.getItem('theme') || 'dark'
         } catch (err) { }
 
         window.__setPreferredTheme = function(newTheme) {
           setTheme(newTheme);
           try {
-            localStorage.setItem('theme', newTheme);
+            localStorage.setItem('theme', newTheme)
           } catch (err) {}
         }
 
-        var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        var darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
         darkQuery.addListener(function(e) {
           window.__setPreferredTheme(e.matches ? 'dark' : 'light')
-        });
+        })
 
-        setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
-      })();
+        setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+      })()
     </script>
 
     <div id="app" data-server-rendered="true"><header class="header"><div class="header__left"><a href="/" class="logo active"><span class="logo__text">
@@ -43,6 +43,6 @@
   </h1><div class="posts"><div class="post-card content-box"><div class="post-card__header"><!----></div><div class="post-card__content"><h2 class="post-card__title">Install Solr 5 and Zookeeper in a production environment</h2><p class="post-card__description">Recently I had to set up three Solr servers in an AWS environment. I couldn't find anything specific to help me, so had to locate all the information separately. Hopefully the following may be of use to anyone who has to go through the same. In my situation, I have 3 servers that will sit behind a load balancer. The following describes how I set up each server.</p><div class="post-meta post-card__meta">
    Posted 4. June 2015.
    <strong>36 min read.</strong></div><div class="post-tags post-card__tags"></div><a href="/install-solr-5-and-zookeeper-in-a-production-environment/" class="post-card__link">Link</a></div></div></div></main><footer class="footer"><span class="footer__copyright">Copyright © 2020. </span><span class="footer__links"></span></footer></div>
-    <script src="/assets/js/app.3631859a.js" defer></script><script src="/assets/js/page--src-templates-tag-vue.01bcf8ad.js" defer></script>
+    <script src="/assets/js/app.58d93565.js" defer></script><script src="/assets/js/page--src-templates-tag-vue.dfc7ad95.js" defer></script>
   </body>
 </html>
