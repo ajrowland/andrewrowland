@@ -85,7 +85,9 @@ export default {
   text-align: center;
 
   &__link {
-    padding: 10px;
+    padding: 20px;
+    margin: 10px;
+    display: inline-block;
   }
 }
 </style>
