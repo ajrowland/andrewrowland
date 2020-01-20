@@ -56,6 +56,25 @@ module.exports = {
           '/\\d+'
         ]
       }
+    },
+    {
+      use: 'gridsome-plugin-pwa',
+      options: {
+        title: 'Andrew Rowland',
+        startUrl: '/',
+        display: 'standalone',
+        statusBarStyle: 'default',
+        manifestPath: 'manifest.json',
+        disableServiceWorker: false,
+        serviceWorkerPath: 'service-worker.js',
+        cachedFileTypes: 'js,json,css,html,png,jpg,jpeg,svg',
+        shortName: 'Andrew Rowland',
+        themeColor: '#ffffff',
+        backgroundColor: '#0D2538',
+        icon: 'src/favicon.png', // must be provided like 'src/favicon.png'
+        msTileImage: 'src/favicon.png',
+        msTileColor: '#ffffff'
+      }
     }
   ],
 

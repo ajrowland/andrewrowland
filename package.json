@@ -17,6 +17,7 @@
     "gh-pages": "^2.1.1",
     "gridsome": "^0.7.0",
     "gridsome-plugin-gtm": "^0.1.1",
+    "gridsome-plugin-pwa": "0.0.12",
     "vue-disqus": "^3.0.5"
   },
   "devDependencies": {
