@@ -1,5 +1,5 @@
 // Import focus-visible polyfill
-import 'focus-visible/dist/focus-visible.min.js'
+import 'focus-visible'
 
 // Import main css
 import '~/assets/style/index.scss'
