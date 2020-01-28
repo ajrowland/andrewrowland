@@ -38,7 +38,7 @@ export default {
   &:hover {
     opacity: .8
   }
-  &:focus-visible {
+  &:focus:not(.focus-visible) {
     outline: none;
   }
 }
