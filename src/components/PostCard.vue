@@ -8,9 +8,10 @@
       <p class="post-card__description" v-html="post.description" />
 
       <PostMeta class="post-card__meta" :post="post" />
-      <PostTags class="post-card__tags" :post="post" />
 
-      <g-link class="post-card__link" :to="post.path">Link</g-link>
+      <g-link class="post-card__link" :to="post.path">Read {{ post.title }}</g-link>
+
+      <PostTags class="post-card__tags" :post="post" />
     </div>
   </div>
 </template>
@@ -74,6 +75,10 @@ export default {
     overflow: hidden;
     text-indent: -9999px;
     z-index: 0;
+
+    &.focus-visible {
+      opacity: .8;
+    }
   }
 }
 </style>
