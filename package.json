@@ -9,27 +9,27 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@gridsome/plugin-google-analytics": "^0.1.0",
-    "@gridsome/plugin-sitemap": "^0.2.3",
-    "@gridsome/remark-prismjs": "^0.2.0",
-    "@gridsome/source-filesystem": "^0.6.0",
-    "@gridsome/transformer-remark": "^0.3.0",
-    "focus-visible": "^5.0.2",
-    "gh-pages": "^2.1.1",
-    "gridsome": "^0.7.0",
+    "@gridsome/plugin-google-analytics": "^0.1.2",
+    "@gridsome/plugin-sitemap": "^0.4.0",
+    "@gridsome/remark-prismjs": "^0.5.0",
+    "@gridsome/source-filesystem": "^0.6.2",
+    "@gridsome/transformer-remark": "^0.6.4",
+    "focus-visible": "^5.2.1",
+    "gh-pages": "^6.1.1",
+    "gridsome": "^0.7.23",
     "gridsome-plugin-gtm": "^0.1.1",
-    "gridsome-plugin-pwa": "0.0.12",
+    "gridsome-plugin-pwa": "0.0.22",
     "sass": "^1.77.8",
-    "vue-disqus": "^3.0.5"
+    "vue-disqus": "^4.0.1"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-vue": "^6.1.2",
-    "sass-loader": "^8.0.0"
+    "eslint": "^8.56.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.6.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-plugin-vue": "^9.27.0",
+    "sass-loader": "^10.1.1"
   }
 }
