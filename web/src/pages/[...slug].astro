@@ -1,0 +1,127 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import PostMeta from "@components/PostMeta.astro";
+import PostTags from "@components/PostTags.astro";
+import Author from "@components/Author.astro";
+import Image from "astro/components/Image.astro";
+
+export const getStaticPaths = async () => {
+  const posts = await getCollection("posts", ({ data }) => {
+    return import.meta.env.PROD ? data.published === true : true;
+  });
+
+  return posts.map((post) => {
+    return {
+      params: {
+        slug: `/${post.slug.replace(/^\d{4}-\d{2}-\d{2}-/, "")}/`,
+      },
+      props: { post },
+    };
+  });
+};
+
+const { post } = Astro.props;
+
+const coverImage = post.data.cover_image
+  ? import(`/src/content/posts/${post.data.cover_image}`)
+  : "";
+
+const { Content } = await post.render();
+---
+
+<Layout showLogo={true}>
+  <div class="post-title">
+    <h1 class="post-title__text">
+      {post.data.title}
+    </h1>
+
+    <PostMeta post={post} />
+  </div>
+
+  <div class="post content-box">
+    <div class="post__header">
+      {
+        coverImage && (
+          <Image alt="Cover image" class="post-card__image" src={coverImage} />
+        )
+      }
+    </div>
+
+    <div class="post__content">
+      <Content />
+    </div>
+
+    <div class="post__footer">
+      <PostTags post={post} />
+    </div>
+
+    {post.comments && <div class="post-comments">TODO!</div>}
+  </div>
+
+  <Author class="post-author" />
+</Layout>
+
+<style>
+  .post-title {
+    padding: calc(var(--space) / 2) 0 calc(var(--space) / 2);
+    text-align: center;
+  }
+
+  .post {
+    hr {
+      opacity: 0.2;
+      margin-top: calc(var(--space) / 1.5);
+    }
+
+    &__header {
+      width: calc(100% + var(--space) * 2);
+      margin-left: calc(var(--space) * -1);
+      margin-top: calc(var(--space) * -1);
+      margin-bottom: calc(var(--space) / 2);
+      overflow: hidden;
+      border-radius: var(--radius) var(--radius) 0 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      &:empty {
+        display: none;
+      }
+    }
+
+    &__content {
+      overflow: hidden;
+
+      h2:first-child {
+        margin-top: 0;
+      }
+
+      p:first-of-type {
+        font-size: 1.2em;
+        color: var(--title-color);
+      }
+
+      img {
+        width: calc(100% + var(--space) * 2);
+        margin-left: calc(var(--space) * -1);
+        display: block;
+        max-width: none;
+      }
+    }
+  }
+
+  .post-comments {
+    margin-top: var(--space);
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .post-author {
+    margin-top: calc(var(--space) / 2);
+  }
+</style>
