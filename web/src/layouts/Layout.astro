@@ -9,6 +9,7 @@ const { showLogo } = Astro.props;
 <!doctype html>
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="dns-prefetch" href="https://storage.googleapis.com" />
   </head>
@@ -39,6 +40,11 @@ const { showLogo } = Astro.props;
 </html>
 
 <script>
+  document.querySelectorAll("[href^=mailto]").forEach(function (link) {
+    var href = link.getAttribute("href")?.replace("AT", "@").replace("DOT", ".");
+    if (href) link.setAttribute("href", href);
+  });
+
   window.__onThemeChange = function () {};
   function setTheme(newTheme: string) {
     window.__theme = newTheme;
