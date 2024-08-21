@@ -1,0 +1,15 @@
+---
+const { post } = Astro.props;
+---
+
+<div class="post-meta">
+  Posted {post.data.date.toDateString()}.
+  {post.data.timeToRead && <strong>{post.data.timeToRead} min read.</strong>}
+</div>
+
+<style>
+  .post-meta {
+    font-size: 0.8em;
+    opacity: 0.8;
+  }
+</style>

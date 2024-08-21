@@ -1,0 +1,30 @@
+---
+const { post } = Astro.props;
+---
+
+<div class="post-tags">
+  {
+    post.data.tags?.map((tag: any) => (
+      <a class="post-tags__link" href={`/tag/${tag}/`}>
+        <span>#</span> {tag}
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .post-tags {
+    margin: 3em 0 0;
+
+    &__link {
+      margin-right: 0.7em;
+      font-size: 0.8em;
+      color: currentColor;
+      text-decoration: none;
+      background-color: var(--bg-color);
+      color: currentColor !important;
+      padding: 0.5em;
+      border-radius: var(--radius);
+    }
+  }
+</style>

@@ -1,0 +1,113 @@
+---
+import "../assets/style/global.css";
+import Logo from "@components/Logo.astro";
+import ToggleTheme from "@components/ToggleTheme.astro";
+
+const { showLogo } = Astro.props;
+---
+
+<!doctype html>
+<html>
+  <head>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="dns-prefetch" href="https://storage.googleapis.com" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="header">
+        <div class="header__left">
+          {showLogo && <Logo />}
+        </div>
+
+        <div class="header__right">
+          <ToggleTheme />
+        </div>
+      </header>
+
+      <main class="main">
+        <slot />
+      </main>
+
+      <footer class="footer">
+        <span class="footer__copyright"
+          >Copyright &copy; {new Date().getFullYear()}.
+        </span>
+        <span class="footer__links"></span>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<script>
+  window.__onThemeChange = function () {};
+  function setTheme(newTheme: string) {
+    window.__theme = newTheme;
+    preferredTheme = newTheme;
+    document.body.setAttribute("data-theme", newTheme);
+    window.__onThemeChange(newTheme);
+  }
+
+  var preferredTheme;
+  try {
+    preferredTheme = localStorage.getItem("theme") || "dark";
+  } catch (err) {}
+
+  window.__setPreferredTheme = function (newTheme: string) {
+    setTheme(newTheme);
+    try {
+      localStorage.setItem("theme", newTheme);
+    } catch (err) {}
+  };
+
+  var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  darkQuery.addEventListener("change", function (e) {
+    window.__setPreferredTheme(e.matches ? "dark" : "light");
+  });
+
+  setTheme(preferredTheme || (darkQuery.matches ? "dark" : "light"));
+</script>
+
+<style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: var(--header-height);
+    padding: 0 calc(var(--space) / 2);
+    top: 0;
+    z-index: 10;
+
+    &__left,
+    &__right {
+      display: flex;
+      align-items: center;
+    }
+
+    @media screen and (min-width: 1300px) {
+      position: sticky;
+      width: 100%;
+    }
+  }
+
+  .main {
+    margin: 0 auto;
+    padding: 1.5vw 15px 0;
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--space) / 2);
+    text-align: center;
+    font-size: 0.8em;
+
+    > span {
+      margin: 0 0.35em;
+    }
+
+    a {
+      color: currentColor;
+    }
+  }
+</style>

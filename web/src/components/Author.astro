@@ -1,0 +1,57 @@
+---
+import authorImage from "@assets/images/author.png";
+
+const { showTitle } = Astro.props;
+---
+
+<div class="author">
+  <img
+    alt="Author image"
+    class="author__image"
+    src={authorImage.src}
+    width="180"
+    height="180"
+  />
+
+  {showTitle && <h1 class="author__site-title">Andrew Rowland</h1>}
+
+  <p class="author__intro">I only want to help you...</p>
+
+  <p class="author__links">
+    <a href="//www.linkedin.com/in/hashbang/">LinkedIn</a>
+    <a href="//twitter.com/andyjrowland">Twitter</a>
+    <a href="//github.com/ajrowland">GitHub</a>
+    <a href="mailto:mailATandrewrowlandDOTcom">Email</a>
+  </p>
+</div>
+
+<style>
+  .author {
+    margin: 0 auto;
+    max-width: 500px;
+    text-align: center;
+    padding: calc(var(--space) / 2) 0;
+
+    &__image {
+      border-radius: 100%;
+      width: 90px;
+      height: 90px;
+      margin-bottom: 1em;
+    }
+
+    &__intro {
+      opacity: 0.8;
+    }
+
+    &__site-title {
+      font-size: 1.5em;
+    }
+
+    &__links {
+      margin-top: -0.5em;
+      a {
+        margin: 0 0.5em;
+      }
+    }
+  }
+</style>

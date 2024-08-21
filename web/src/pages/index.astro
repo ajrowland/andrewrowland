@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Author from "@components/Author.astro";
+import PostCard from "@components/PostCard.astro";
+
+const posts = await getCollection("posts");
+---
+
+<Layout showLogo={false}>
+  <Author showTitle={true} />
+
+  <div class="posts">
+    {posts.reverse().map((post) => <PostCard post={post} />)}
+
+    <!--<Pager class="pager" linkClass="pager__link" info="$page.posts.pageInfo" />-->
+  </div>
+</Layout>
+
+<style>
+  .pager {
+    text-align: center;
+
+    &__link {
+      padding: 20px;
+      margin: 10px;
+      display: inline-block;
+    }
+  }
+</style>
