@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { getPath } from "@lib/util";
 import PostMeta from "./PostMeta.astro";
 import PostTags from "./PostTags.astro";
 
@@ -29,7 +30,7 @@ const coverImage = post.data.cover_image
 
     <a
       class="post-card__link"
-      href={`/${post.slug.replace(/^\d{4}-\d{2}-\d{2}-/, "")}/`}
+      href={getPath(post.slug)}
       >Read {post.data.title}</a
     >
 

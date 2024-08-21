@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { getPath } from "@lib/util";
 import Layout from "@layouts/Layout.astro";
 import PostMeta from "@components/PostMeta.astro";
 import PostTags from "@components/PostTags.astro";
@@ -14,7 +15,7 @@ export const getStaticPaths = async () => {
   return posts.map((post) => {
     return {
       params: {
-        slug: `/${post.slug.replace(/^\d{4}-\d{2}-\d{2}-/, "")}/`,
+        slug: getPath(post.slug),
       },
       props: { post },
     };

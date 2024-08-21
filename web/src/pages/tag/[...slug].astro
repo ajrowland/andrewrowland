@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from 'astro:content';
+import { getPath } from "@lib/util";
+import Layout from "@layouts/Layout.astro";
+import PostCard from "@components/PostCard.astro";
+
+export const getStaticPaths = async () => {
+  const posts = await getCollection("posts", ({ data }) => {
+    return import.meta.env.PROD ? data.published === true : true;
+  });
+
+  const tags = posts.reduce<{ [key: string]: CollectionEntry<"posts">[] }>((acc, post) => {
+    post.data.tags?.forEach((tag: string) => {
+      if (!acc[tag]) acc[tag] = [];
+      acc[tag].push(post);
+    });
+
+    return acc;
+  }, {});
+
+  return Object.keys(tags).map((tag) => {
+    return {
+      params: {
+        slug: getPath(tag),
+      },
+      props: { title: tag, posts: tags[tag] },
+    };
+  });
+};
+
+const { title, posts } = Astro.props;
+---
+
+<Layout showLogo={true}>
+  <h1 class="tag-title text-center space-bottom"># { title }</h1>
+
+  <div class="posts">
+    {posts.reverse().map((post: any) => <PostCard post={post} />)}
+
+    <!--<Pager class="pager" linkClass="pager__link" info="$page.posts.pageInfo" />-->
+  </div>
+</Layout>
+
+<style>
+  .pager {
+    text-align: center;
+
+    &__link {
+      padding: 20px;
+      margin: 10px;
+      display: inline-block;
+    }
+  }
+</style>
