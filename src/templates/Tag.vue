@@ -1,11 +1,13 @@
 <template>
   <Layout>
-    <h1 class="tag-title text-center space-bottom">
-      # {{ $page.tag.title }}
-    </h1>
+    <h1 class="tag-title text-center space-bottom"># {{ $page.tag.title }}</h1>
 
     <div class="posts">
-      <PostCard v-for="edge in $page.tag.belongsTo.edges" :key="edge.node.id" :post="edge.node"/>
+      <PostCard
+        v-for="edge in $page.tag.belongsTo.edges"
+        :key="edge.node.id"
+        :post="edge.node"
+      />
     </div>
   </Layout>
 </template>
@@ -34,16 +36,16 @@ query Tag ($id: ID!) {
 </page-query>
 
 <script>
-import PostCard from '~/components/PostCard.vue'
+import PostCard from "~/components/PostCard.vue";
 
 export default {
   components: {
-    PostCard
+    PostCard,
   },
-  metaInfo () {
+  metaInfo() {
     return {
-      title: this.$page.tag.title
-    }
-  }
-}
+      title: this.$page.tag.title,
+    };
+  },
+};
 </script>

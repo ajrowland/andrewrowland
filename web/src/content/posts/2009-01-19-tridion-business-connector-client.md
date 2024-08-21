@@ -2,7 +2,7 @@
 title: Tridion Business Connector client
 date: 2009-01-19
 published: true
-tags: ['Perl', 'Tridion']
+tags: ["Perl", "Tridion"]
 canonical_url: false
 description: "A bit of a niche entry this one. Will only be of interest to those who use Tridion, one of the more 'heavyweight' CMS solutions."
 ---

@@ -67,52 +67,66 @@ Sample client code that calls the .Net Web service:
 
 ```html
 <html>
-<head>
+  <head>
     <title>World example</title>
     <script type="text/javascript" src="/path/to/jquery.js"></script>
     <script type="text/javascript">
-    $(document).ready(function() {
-        $('#submit').click(function() {
-            $.ajax({
-                type: "POST",
-                data: '{continent: "' + $('#txtContinent').val() + '"}',
-                url: "/services/example.asmx/GetCountries",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function(response) {
-                    var data = (typeof response.d) == 'string' ? eval('(' + response.d + ')') : response.d;
+      $(document).ready(function() {
+        $("#submit").click(function() {
+          $.ajax({
+            type: "POST",
+            data: '{continent: "' + $("#txtContinent").val() + '"}',
+            url: "/services/example.asmx/GetCountries",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(response) {
+              var data =
+                typeof response.d == "string"
+                  ? eval("(" + response.d + ")")
+                  : response.d;
 
-                    $('#result').empty().append('<table border=1><thead><tr></tr></thead><tbody></tbody></table>');
+              $("#result")
+                .empty()
+                .append(
+                  "<table border=1><thead><tr></tr></thead><tbody></tbody></table>"
+                );
 
-                    $('<th/>').text($('#txtContinent').val()).appendTo('#result thead tr');
+              $("<th/>")
+                .text($("#txtContinent").val())
+                .appendTo("#result thead tr");
 
-                    for (var i = 0; i < data.length; i ++) {
-                        $('<tr/>').append($('<td/>').text(data[i])).appendTo('#result tbody');
-                    }
-                },
-                failure: function(msg) {
-                    $('#result').empty().append(msg);
-                }
-            });
+              for (var i = 0; i < data.length; i++) {
+                $("<tr/>")
+                  .append($("<td/>").text(data[i]))
+                  .appendTo("#result tbody");
+              }
+            },
+            failure: function(msg) {
+              $("#result")
+                .empty()
+                .append(msg);
+            },
+          });
         });
-    });
+      });
     </script>
-</head>
-<body>
+  </head>
+  <body>
+    <p>
+      <label for="txtContinent">Continent</label><br />
+      <input type="text" id="txtContinent" />
+      <input id="submit" type="button" value="Submit" />
+    </p>
 
-<p><label for="txtContinent">Continent</label><br />
-<input type="text" id="txtContinent" /> <input id="submit" type="button" value="Submit" /></p>
-
-<div id="result"></div>
-
-</body>
+    <div id="result"></div>
+  </body>
 </html>
 ```
 
 Note line 15:
 
 ```javascript
-var data = (typeof response) == 'string' ? eval('(' + response + ')') : response;
+var data = typeof response == "string" ? eval("(" + response + ")") : response;
 ```
 
 I added this line so that the data object is correctly evaluated if a serialized JSON string is returned.
@@ -122,7 +136,8 @@ There you have it, avoid the Microsoft code bloat, with not a ScriptManager tag 
 ## 25 thoughts on “Consume .Net Web service using jQuery”
 
 ### Andy
-*August 12, 2008 at 5:34 pm*
+
+_August 12, 2008 at 5:34 pm_
 
 If you look at line 10 in the HTML example above, the data key of the AJAX request contains a serialised JSON object. I've manually serialised the parameters to be sent to the Web service. If your object is more complex, use a JSON stringifier.
 
@@ -133,21 +148,24 @@ Hope this helps.
 ---
 
 ### Andy
-*August 12, 2008 at 5:34 pm*
+
+_August 12, 2008 at 5:34 pm_
 
 Indeed, and it appears many people are heading in this direction. Thanks very much for posting the first comment.
 
 ---
 
 ### Govind
-*August 12, 2008 at 5:34 pm*
+
+_August 12, 2008 at 5:34 pm_
 
 +1. Beautiful, I too love jquery and moved away from the scriptmanager/updatepanel/proxy stuff. It was way too clunky.
 
 ---
 
 ### zbrong
-*August 12, 2008 at 5:34 pm*
+
+_August 12, 2008 at 5:34 pm_
 
 good article, thanks
 
@@ -158,7 +176,8 @@ thanks
 ---
 
 ### david
-*September 11, 2008 at 7:01 am*
+
+_September 11, 2008 at 7:01 am_
 
 Hello,
 
@@ -167,14 +186,16 @@ I am using .net 2.0 with c# and I am stuggling to get any of these exemples work
 ---
 
 ### paul
-*September 15, 2008 at 9:46 am*
+
+_September 15, 2008 at 9:46 am_
 
 I'm also using .net 2 with C# and would appreciate the revised solution. Thanks in advance.
 
 ---
 
 ### Andy
-*September 15, 2008 at 9:46 am*
+
+_September 15, 2008 at 9:46 am_
 
 Seems to be a fair amount of interest in this post. As you can see, I'm stuggling to find the time to update this blog more regularly.
 
@@ -185,7 +206,8 @@ Thanks gents.
 ---
 
 ### Andy
-*September 26, 2008 at 8:46 pm*
+
+_September 26, 2008 at 8:46 pm_
 
 Sorry for the delay. I installed Visual Studio 2008 Express, and created this project.
 
@@ -194,7 +216,8 @@ Hope this helps.
 ---
 
 ### Fawad Hassan
-*March 14, 2009 at 3:27 pm*
+
+_March 14, 2009 at 3:27 pm_
 
 nice article!
 
@@ -205,7 +228,8 @@ Now I shall try it myself...
 ---
 
 ### Yoav
-*August 20, 2009 at 4:13 pm*
+
+_August 20, 2009 at 4:13 pm_
 
 Hi there,
 
@@ -216,14 +240,16 @@ http://yoavniran.wordpress.com/2009/08/02/creating-a-webservice-proxy-with-jquer
 ---
 
 ### Andy
-*August 20, 2009 at 4:17 pm*
+
+_August 20, 2009 at 4:17 pm_
 
 Good stuff Yoav. I'm sure your article will be useful to others as well.
 
 ---
 
 ### DaCoder
-*November 2, 2009 at 4:32 pm*
+
+_November 2, 2009 at 4:32 pm_
 
 HI
 
@@ -252,7 +278,8 @@ Any ideas?
 ---
 
 ### DaCoder
-*November 4, 2009 at 4:17 am*
+
+_November 4, 2009 at 4:17 am_
 
 Hi
 
@@ -265,14 +292,16 @@ Hope someone finds it useful
 ---
 
 ### Kenny Evitt
-*May 14, 2010 at 4:51 am*
+
+_May 14, 2010 at 4:51 am_
 
 Excellent example!
 
 ---
 
 ### Prabu
-*May 14, 2010 at 4:51 am*
+
+_May 14, 2010 at 4:51 am_
 
 Hi.
 
@@ -281,56 +310,64 @@ I am wondering if this works from a static html page outside of the webservice p
 ---
 
 ### Rupesh
-*May 14, 2010 at 4:56 am*
+
+_May 14, 2010 at 4:56 am_
 
 Hi am using Webservice as a different project and when i add a webreference of this in my project. then jquery call does not works. if the asmx file is in the same webapplication project then it works fine. Is there any way to cosume the webservice's webmethod by puting the web reference of weservice.
 
 ---
 
 ### Andy
-*May 14, 2010 at 4:57 am*
+
+_May 14, 2010 at 4:57 am_
 
 No reason why not. In your AJAX call, you will have to use the full URL if the service is running on different domain. Other than that consideration, it should not be a problem.
 
 ---
 
 ### Jake
-*July 21, 2010 at 5:41 pm*
+
+_July 21, 2010 at 5:41 pm_
 
 Here is an example of how to get FullCalendar working in VB.NET using a webservice. http://jake1164.blogspot.com/2010/06/jquery-fullcalendar-and-aspnet.html
 
 ---
 
 ### Michael Mofokeng
-*September 2, 2010 at 8:19 am*
+
+_September 2, 2010 at 8:19 am_
 
 Hi There. I've re-created the example as a project but its not working from my side. It'is doesn't return a success or failed message either.
 
 ---
 
 ### Mickey
-*January 3, 2011 at 1:00 pm*
+
+_January 3, 2011 at 1:00 pm_
 
 I have a simple example of how I call a webservice using jquery on my tumblr blog. http://mickeyelliott.tumblr.com/post/1581098755/using-jquery-to-call-a-webservice
 
 ---
 
 ### Bhargav
-*February 8, 2011 at 10:28 am*
+
+_February 8, 2011 at 10:28 am_
 
 Really Grt article, helped me a lot. Thank you very much.
 
 ---
 
 ### vani
-*April 2, 2011 at 12:03 pm*
+
+_April 2, 2011 at 12:03 pm_
 
 nice
 
 ---
 
 ### Nidhi
-*April 19, 2011 at 7:18 pm*
+
+_April 19, 2011 at 7:18 pm_
 
 Is it possible to retrieve the user's identity (authentication) in the web method?
 
@@ -339,7 +376,8 @@ I'm also wondering if user roles can be checked in web methods. If someone has s
 ---
 
 ### Rajesh143
-*September 6, 2011 at 1:11 pm*
+
+_September 6, 2011 at 1:11 pm_
 
 Hi Andy , nice post it helped me.
 
@@ -351,7 +389,8 @@ Can you please address my problem ASAP.
 ---
 
 ### ad guru
-*March 13, 2012 at 12:43 am*
+
+_March 13, 2012 at 12:43 am_
 
 Great help. Thank you.
 

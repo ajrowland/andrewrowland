@@ -6,12 +6,15 @@
       </h1>
 
       <PostMeta :post="$page.post" />
-
     </div>
 
     <div class="post content-box">
       <div class="post__header">
-        <g-image alt="Cover image" v-if="$page.post.cover_image" :src="$page.post.cover_image" />
+        <g-image
+          alt="Cover image"
+          v-if="$page.post.cover_image"
+          :src="$page.post.cover_image"
+        />
       </div>
 
       <div class="post__content" v-html="$page.post.content" />
@@ -21,7 +24,10 @@
       </div>
 
       <div v-if="$page.post.comments" class="post-comments">
-        <vue-disqus shortname="andrewrowland" :identifier="$page.post.title"></vue-disqus>
+        <vue-disqus
+          shortname="andrewrowland"
+          :identifier="$page.post.title"
+        ></vue-disqus>
       </div>
     </div>
 
@@ -30,47 +36,47 @@
 </template>
 
 <script>
-import PostMeta from '~/components/PostMeta'
-import PostTags from '~/components/PostTags'
-import Author from '~/components/Author.vue'
+import PostMeta from "~/components/PostMeta";
+import PostTags from "~/components/PostTags";
+import Author from "~/components/Author.vue";
 
 export default {
   components: {
     Author,
     PostMeta,
-    PostTags
+    PostTags,
   },
-  metaInfo: function () {
-    const { siteUrl } = this.$page.metadata
+  metaInfo: function() {
+    const { siteUrl } = this.$page.metadata;
 
     const metaData = {
       title: this.$page.post.title,
       meta: [
-        { name: 'description', content: this.$page.post.description },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:description', content: this.$page.post.description },
-        { name: 'twitter:title', content: this.$page.post.title },
-        { name: 'twitter:site', content: '@andyjrowland' },
-        { name: 'twitter:creator', content: '@andyjrowland' },
-        { property: 'og:type', content: 'article' },
-        { property: 'og:title', content: this.$page.post.title },
-        { property: 'og:description', content: this.$page.post.description },
-        { property: 'og:url', content: `${siteUrl}${this.$page.post.path}` }
+        { name: "description", content: this.$page.post.description },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:description", content: this.$page.post.description },
+        { name: "twitter:title", content: this.$page.post.title },
+        { name: "twitter:site", content: "@andyjrowland" },
+        { name: "twitter:creator", content: "@andyjrowland" },
+        { property: "og:type", content: "article" },
+        { property: "og:title", content: this.$page.post.title },
+        { property: "og:description", content: this.$page.post.description },
+        { property: "og:url", content: `${siteUrl}${this.$page.post.path}` },
       ],
-      script: [{ src: 'https://platform.twitter.com/widgets.js', async: true }]
-    }
+      script: [{ src: "https://platform.twitter.com/widgets.js", async: true }],
+    };
 
     if (this.$page.post.cover_image) {
-      const { src: imagePath } = this.$page.post.cover_image
-      const imageUrl = `${siteUrl}${imagePath}`
+      const { src: imagePath } = this.$page.post.cover_image;
+      const imageUrl = `${siteUrl}${imagePath}`;
 
-      metaData.meta.push({ name: 'twitter:image', content: imageUrl })
-      metaData.meta.push({ property: 'og:image', content: imageUrl })
+      metaData.meta.push({ name: "twitter:image", content: imageUrl });
+      metaData.meta.push({ property: "og:image", content: imageUrl });
     }
 
-    return metaData
-  }
-}
+    return metaData;
+  },
+};
 </script>
 
 <page-query>
@@ -103,7 +109,6 @@ query Post ($id: ID!) {
 }
 
 .post {
-
   hr {
     opacity: 0.2;
     margin-top: calc(var(--space) / 1.5);

@@ -99,43 +99,49 @@ And, of course, a view is required to display the results:
 
 ```html
 <html>
-<head>
+  <head>
     <title>Search results</title>
-</head>
-<body>
+  </head>
+  <body>
+    <h1>Search results</h1>
 
-<h1>Search results</h1>
-
-<?php if (empty($_POST['search_query'])):?>
-<p>No search query submitted.</p>
-<?php else:?>
-    <?php if (count($results)):?>
-<p><?php echo count($results) ?> result(s) returned for query: <?php echo $_POST['search_query'];?></p>
-<ul>
-    <?php foreach($results as $result):?>
-    <li><?=anchor(site_url($result->path), $result->title);?> (<?php echo round($result->score, 2) * 100;?>%)</li>
-    <?php endforeach;?>
-</ul>
+    <?php if (empty($_POST['search_query'])):?>
+    <p>No search query submitted.</p>
+    <?php else:?> <?php if (count($results)):?>
+    <p>
+      <?php echo count($results) ?>
+      result(s) returned for query: <?php echo $_POST['search_query'];?>
+    </p>
+    <ul>
+      <?php foreach($results as $result):?>
+      <li>
+        <?=anchor(site_url($result->path), $result->title);?> (<?php echo
+        round($result->score, 2) * 100;?>%)
+      </li>
+      <?php endforeach;?>
+    </ul>
     <?php else:?>
-<p>No results were returned for query: <?php echo $_POST['search_query'];?></p>
-    <?php endif;?>
-<?php endif;?>
-
-</body>
+    <p>
+      No results were returned for query: <?php echo $_POST['search_query'];?>
+    </p>
+    <?php endif;?> <?php endif;?>
+  </body>
 </html>
 ```
 
 ## 20 thoughts on "Using the Zend framework Lucene library Part 2"
 
 ### Jeff
-*November 14, 2008 at 8:07 am*
+
+_November 14, 2008 at 8:07 am_
 
 Great post! Keep it up.
 
 ---
 
 ### Rob
-*March 9, 2009 at 6:01 am*
+
+_March 9, 2009 at 6:01 am_
 
 Hi Andrew,
 
@@ -152,7 +158,8 @@ Rob.
 ---
 
 ### Rob
-*March 11, 2009 at 5:35 am*
+
+_March 11, 2009 at 5:35 am_
 
 Andrew,
 
@@ -167,7 +174,8 @@ Rob.
 ---
 
 ### zaw
-*March 13, 2009 at 9:42 am*
+
+_March 13, 2009 at 9:42 am_
 
 In the display result view page, when searching html file content the result will be long text.
 How can I display only the synopsis of the long text?
@@ -183,7 +191,8 @@ In above e.g., Google show two parts of text. How can I do like this?
 ---
 
 ### zaw
-*March 14, 2009 at 3:28 pm*
+
+_March 14, 2009 at 3:28 pm_
 
 Hi Andrew
 
@@ -201,7 +210,8 @@ thanks
 ---
 
 ### Andy
-*March 15, 2009 at 12:52 pm*
+
+_March 15, 2009 at 12:52 pm_
 
 Hello Zaw
 
@@ -219,7 +229,8 @@ I had a go quick on my site, and made it work, but did not get around to the fin
 ---
 
 ### Zaw
-*May 13, 2009 at 4:38 am*
+
+_May 13, 2009 at 4:38 am_
 
 Hello
 
@@ -239,7 +250,7 @@ But this chunk class require three parameters
 How can I get array of search words from zend lucene result?
 If I query with wild card in lucene, the result hightlight text may vary depend of the content of file.
 
-e.g. If I query like meth*, the result may include method, methodology, etc.
+e.g. If I query like meth\*, the result may include method, methodology, etc.
 I need to know which words are found in the file to use the chunk class.
 
 Is there a way to find the list of keywords that found for a search result?
@@ -249,7 +260,8 @@ Thanks
 ---
 
 ### junaid
-*May 16, 2009 at 12:13 pm*
+
+_May 16, 2009 at 12:13 pm_
 
 hi andrew,
 i have a problem while using your method code. i have only included exception .php file and Zend/Search folder in my application/libraries. i get an error
@@ -268,7 +280,8 @@ if u can please help me .
 ---
 
 ### junaid
-*May 17, 2009 at 4:18 am*
+
+_May 17, 2009 at 4:18 am_
 
 hi,
 thanks for your reply.
@@ -333,14 +346,16 @@ Fatal error: Uncaught exception 'Zend_Search_Lucene_Exception' with message 'Ind
 ---
 
 ### Andy
-*May 17, 2009 at 4:19 am*
+
+_May 17, 2009 at 4:19 am_
 
 It looks like an error in my code. I've changed the way the library is loaded, as you suggested. Removed the create method, and have created the index directly within the reindex method.
 
 ---
 
 ### john
-*May 21, 2009 at 6:51 am*
+
+_May 21, 2009 at 6:51 am_
 
 ```shell
 A PHP Error was encountered
@@ -360,7 +375,8 @@ Line Number: 343
 ---
 
 ### Andy
-*May 21, 2009 at 6:55 am*
+
+_May 21, 2009 at 6:55 am_
 
 You appear to be having a problem with the Zend library class rather than my code.
 
@@ -369,14 +385,16 @@ A quick Google brings something that might help.
 ---
 
 ### yeiniel
-*February 10, 2010 at 11:47 am*
+
+_February 10, 2010 at 11:47 am_
 
 there is no problem width the code, the problem here is that the search index is not created. you need to create the index first. see Zend framework documentation to acomplish that
 
 ---
 
 ### noel
-*May 14, 2010 at 4:50 am*
+
+_May 14, 2010 at 4:50 am_
 
 This works fine on my local, but as soon as i put it on my live server i get:
 
@@ -395,14 +413,16 @@ Line Number: 51
 ---
 
 ### Brian
-*January 3, 2011 at 12:58 pm*
+
+_January 3, 2011 at 12:58 pm_
 
 Thank you, I have the Lucene searching within the CI framework now, but do you know of a way to paginate the results? The CI Library is fine for database queries, but I am not sure how to implement pagination with the Lucene indexes...
 
 ---
 
 ### tom
-*January 3, 2011 at 12:59 pm*
+
+_January 3, 2011 at 12:59 pm_
 
 pls help me...
 
@@ -413,14 +433,16 @@ Fatal error: Class 'Zend_Search_Lucene' not found
 ---
 
 ### ria
-*March 19, 2011 at 1:54 pm*
+
+_March 19, 2011 at 1:54 pm_
 
 very helpful resource. thanks for sharing.
 
 ---
 
 ### annony
-*August 8, 2011 at 9:57 am*
+
+_August 8, 2011 at 9:57 am_
 
 ```shell
 Index doesn't exists in the specified directory::
@@ -434,7 +456,8 @@ Once created , I removed create statement, and worked fine
 ---
 
 ### Leonardo Siagian
-*March 10, 2014 at 5:18 am*
+
+_March 10, 2014 at 5:18 am_
 
 How if i use category in searching? it's mean, i select firstly category before searching.
 
@@ -457,7 +480,8 @@ anybody can solve my problem? thanks ...
 ---
 
 ### Kopano Unity
-*July 22, 2014 at 1:41 pm*
+
+_July 22, 2014 at 1:41 pm_
 Hi Jeff
 
 Thanks for the post first of all it is very understandable, but I keep coming across an error in my code hope you can help me here is my stackoverflow question link http://stackoverflow.com/questions/24887645/zend-lucene-search-content-inside-a-datebase-in-html-on-a-live-website-404-er

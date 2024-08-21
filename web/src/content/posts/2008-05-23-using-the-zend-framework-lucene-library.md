@@ -2,7 +2,7 @@
 title: Using the Zend framework Lucene library
 date: 2008-05-23
 published: true
-tags: ['CodeIgniter', 'PHP']
+tags: ["CodeIgniter", "PHP"]
 canonical_url: false
 description: "I know, only a few articles in, so I don't really need a site search function. But you never know, I might actually keep writing (even if no-one is reading) and so I've been looking around for some solutions."
 ---
@@ -69,18 +69,16 @@ I didn't bother with the create index view, as all that is needed is a simple me
 
 ```html
 <html>
-<head>
+  <head>
     <title>Search example</title>
-</head>
-<body>
-
-<ul>
-    <?php foreach($results as $result):?>
-    <li><?php echo $result->title;?></li>
-    <?php endforeach;?>
-</ul>
-
-</body>
+  </head>
+  <body>
+    <ul>
+      <?php foreach($results as $result):?>
+      <li><?php echo $result->title;?></li>
+      <?php endforeach;?>
+    </ul>
+  </body>
 </html>
 ```
 
@@ -89,14 +87,16 @@ As you can see, I've noted a few TODO's. Might add a bit of jQuery action (becau
 ## 13 thoughts on “Using the Zend framework Lucene library”
 
 ### alex
-*May 17, 2009 at 2:36 pm*
+
+_May 17, 2009 at 2:36 pm_
 
 what do i have to wrote in the code where it is the comment “ro do”?
 
 ---
 
 ### Andy
-*May 17, 2009 at 3:07 pm*
+
+_May 17, 2009 at 3:07 pm_
 
 The index method doesn't have to do much really, apart from load the view for this method.
 
@@ -107,7 +107,8 @@ Clear? If not, I'll amend the example.
 ---
 
 ### Suresh
-*June 30, 2009 at 11:48 am*
+
+_June 30, 2009 at 11:48 am_
 
 Hi Andy,
 
@@ -118,14 +119,16 @@ Thanks for coming up with this search article.
 ---
 
 ### Andy
-*June 30, 2009 at 11:56 am*
+
+_June 30, 2009 at 11:56 am_
 
 No problem, you can obtain it here. I don't know if he ever altered it, but this is the version of the code I use on my site.
 
 ---
 
 ### Peter
-*August 7, 2009 at 6:28 pm*
+
+_August 7, 2009 at 6:28 pm_
 
 Hi,
 
@@ -148,7 +151,8 @@ Peter
 ---
 
 ### Asif
-*August 7, 2009 at 6:30 pm*
+
+_August 7, 2009 at 6:30 pm_
 
 will it crawl the whole domain going through each link and create the search content?
 
@@ -157,21 +161,24 @@ if that is the case then how can i generate the url link with the search keyword
 ---
 
 ### Andy
-*August 7, 2009 at 6:47 pm*
+
+_August 7, 2009 at 6:47 pm_
 
 This example is just a test case that indexes the home page of my site. A more complete example can be found in the next part of this article.
 
 ---
 
 ### Nir Gavish
-*September 13, 2009 at 2:29 am*
+
+_September 13, 2009 at 2:29 am_
 
 i've seen much talk about using lucene as an indexer, but what about using it as the sole data repository? anyone ever try it? how did it preform? how reliable was it? thanks
 
 ---
 
 ### junaid
-*April 10, 2010 at 4:12 am*
+
+_April 10, 2010 at 4:12 am_
 
 Hi,
 a month ago i sent you comments regarding your article about integration of zend lucene with CI. I have got out of the errors as i reported to you before. but got into some new ones. Now i want to search html docs in my application…every query i m submitting in search is returning no results..when there actually are. i am sending you the code..plz if you can have a look at it and point out my mistake.
@@ -242,28 +249,32 @@ can u figure aut my mistake plz.
 ---
 
 ### Jesmar
-*February 8, 2011 at 10:28 am*
+
+_February 8, 2011 at 10:28 am_
 
 HELLO..i have a problem in my ordering system…I have an error on my controller…Fatal error: `Call to a member function result() on a non-object in C:xampphtdocscifofb1projectsystemapplicationcontrollerscuser.php on line 210`…pls help me
 
 ---
 
 ### Noor
-*January 8, 2015 at 7:27 am*
+
+_January 8, 2015 at 7:27 am_
 
 I downloaded the latest Zend framework release 'ZendFramework-2.3.3.zip' form site http://framework.zend.com/downloads, but I did not find the folder “Search” in path “Zend/Search/Lucene” !! from where I can get it?
 
 ---
 
 ### Noor
-*January 8, 2015 at 8:18 am*
+
+_January 8, 2015 at 8:18 am_
 
 Ok, I discover the problem, zf2 put zendSearch as an optional library, so I have to download it alone
 
 ---
 
 ### Noor
-*January 8, 2015 at 11:08 am*
+
+_January 8, 2015 at 11:08 am_
 
 following your steps, the search works for the previous version of zf1., but right now I want to work with zf2.
 I put the folder ZendSearch under librariy/zend, and I have chnaged the links to look like this:

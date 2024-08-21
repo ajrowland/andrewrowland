@@ -2,7 +2,7 @@
 title: JavaScript event delegation
 date: 2008-05-18
 published: true
-tags: ['JavaScript']
+tags: ["JavaScript"]
 canonical_url: false
 description: "As I've mentioned previously I'm creating a dashboard to represent the components in the exchange that I work for. Each component widget on the page has a number of events associated with it. This has become less manageable, the more I add. So I thought about using one delegate to handle all events, and pass on a component reference, and parameters to other functions."
 ---
@@ -14,16 +14,16 @@ Using jQuery (what else?!) the delegate method is called via an onClick event on
 Using jQuery (what else?!) the delegate method is called via an onClick event on the body of the document. In this case, it checks that the target of the event is a button. If any other element is clicked, nothing will happen.
 
 ```javascript
-$(document).ready(function(){
-    $('body').click(function(e){
-        if (e.target.type == 'submit' || e.target.type == 'button'){
-            var t = $(e.target);
-            var fn = t.attr('class');
-            var p = eval('(' + t.find('.params').html() + ')');
+$(document).ready(function () {
+  $("body").click(function (e) {
+    if (e.target.type == "submit" || e.target.type == "button") {
+      var t = $(e.target);
+      var fn = t.attr("class");
+      var p = eval("(" + t.find(".params").html() + ")");
 
-            window[fn].call(this, t, p);
-        }
-    });
+      window[fn].call(this, t, p);
+    }
+  });
 });
 ```
 
@@ -31,12 +31,8 @@ The function that the delegate passes the parameters to, is decided by the class
 
 ```html
 <button class="changeLabel">
-    <span class="params">
-        {message:"Button pressed"}
-    </span>
-    <span class="label">
-        Press me
-    </span>
+  <span class="params"> {message:"Button pressed"} </span>
+  <span class="label"> Press me </span>
 </button>
 ```
 
@@ -44,7 +40,7 @@ I've surrounded the button label text within another span class called label. Th
 
 ```css
 .params {
-    display: none;
+  display: none;
 }
 ```
 
@@ -52,51 +48,46 @@ The way I've stored the parameters may be a little odd, and I feel I may be miss
 
 ```html
 <html>
-<head>
+  <head>
     <title>Delegate example</title>
     <script type="text/javascript" src="/path/to/jquery.js"></script>
     <script type="text/javascript">
-    $(document).ready(function(){
-        $('body').click(function(e){
-            if (e.target.type == 'submit' || e.target.type == 'button'){
-                var t = $(e.target);
-                var fn = t.attr('class');
-                var p = eval('(' + t.find('.params').html() + ')');
+      $(document).ready(function () {
+        $("body").click(function (e) {
+          if (e.target.type == "submit" || e.target.type == "button") {
+            var t = $(e.target);
+            var fn = t.attr("class");
+            var p = eval("(" + t.find(".params").html() + ")");
 
-                window[fn].call(this, t, p);
-            }
+            window[fn].call(this, t, p);
+          }
         });
-    });
+      });
 
-    function changeLabel(obj, params){
-        obj.find('.label').text(params.message);
-    }
+      function changeLabel(obj, params) {
+        obj.find(".label").text(params.message);
+      }
     </script>
     <style type="text/css">
-    .params {
+      .params {
         display: none;
-    }
+      }
     </style>
-</head>
-<body>
-
-<button class="changeLabel">
-    <span class="params">
-        {message:"Button pressed"}
-    </span>
-    <span class="label">
-        Press me
-    </span>
-</button>
-
-</body>
+  </head>
+  <body>
+    <button class="changeLabel">
+      <span class="params"> {message:"Button pressed"} </span>
+      <span class="label"> Press me </span>
+    </button>
+  </body>
 </html>
 ```
 
 ## One thought on “JavaScript event delegation”
 
 ### Geralynn
-*April 28, 2011 at 5:49 am*
+
+_April 28, 2011 at 5:49 am_
 
 Walking in the presence of giants here. Cool thinking all arnuod!
 

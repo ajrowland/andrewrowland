@@ -5,9 +5,17 @@
 
     <!-- List posts -->
     <div class="posts">
-      <PostCard v-for="edge in $page.posts.edges" :key="edge.node.id" :post="edge.node"/>
+      <PostCard
+        v-for="edge in $page.posts.edges"
+        :key="edge.node.id"
+        :post="edge.node"
+      />
 
-      <Pager class="pager" linkClass="pager__link" :info="$page.posts.pageInfo" />
+      <Pager
+        class="pager"
+        linkClass="pager__link"
+        :info="$page.posts.pageInfo"
+      />
     </div>
   </Layout>
 </template>
@@ -45,39 +53,53 @@ query ($page: Int) {
 </page-query>
 
 <script>
-import { Pager } from 'gridsome'
-import Author from '~/components/Author.vue'
-import PostCard from '~/components/PostCard.vue'
+import { Pager } from "gridsome";
+import Author from "~/components/Author.vue";
+import PostCard from "~/components/PostCard.vue";
 
 export default {
   components: {
     Pager,
     Author,
-    PostCard
+    PostCard,
   },
-  metaInfo: function () {
-    const { siteUrl } = this.$page.metadata
+  metaInfo: function() {
+    const { siteUrl } = this.$page.metadata;
 
     return {
-      title: 'Home',
+      title: "Home",
       meta: [
-        { name: 'description', content: this.$page.metadata.siteDescription },
-        { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:description', content: this.$page.metadata.siteDescription },
-        { name: 'twitter:title', content: this.$page.metadata.siteName },
-        { name: 'twitter:site', content: '@andyjrowland' },
-        { name: 'twitter:creator', content: '@andyjrowland' },
-        { name: 'twitter:image', content: 'https://media-exp1.licdn.com/dms/image/C5603AQGuEHBqeZ-MBg/profile-displayphoto-shrink_200_200/0?e=1583971200&v=beta&t=CMbyHBfa_K4rZt2fwkZzXfGLgleLTVPBtoKKyzqpxWA' },
-        { property: 'og:type', content: 'article' },
-        { property: 'og:title', content: this.$page.metadata.siteName },
-        { property: 'og:description', content: this.$page.metadata.siteDescription },
-        { property: 'og:url', content: `${siteUrl}` },
-        { property: 'og:image', content: 'https://media-exp1.licdn.com/dms/image/C5603AQGuEHBqeZ-MBg/profile-displayphoto-shrink_200_200/0?e=1583971200&v=beta&t=CMbyHBfa_K4rZt2fwkZzXfGLgleLTVPBtoKKyzqpxWA' }
+        { name: "description", content: this.$page.metadata.siteDescription },
+        { name: "twitter:card", content: "summary_large_image" },
+        {
+          name: "twitter:description",
+          content: this.$page.metadata.siteDescription,
+        },
+        { name: "twitter:title", content: this.$page.metadata.siteName },
+        { name: "twitter:site", content: "@andyjrowland" },
+        { name: "twitter:creator", content: "@andyjrowland" },
+        {
+          name: "twitter:image",
+          content:
+            "https://media-exp1.licdn.com/dms/image/C5603AQGuEHBqeZ-MBg/profile-displayphoto-shrink_200_200/0?e=1583971200&v=beta&t=CMbyHBfa_K4rZt2fwkZzXfGLgleLTVPBtoKKyzqpxWA",
+        },
+        { property: "og:type", content: "article" },
+        { property: "og:title", content: this.$page.metadata.siteName },
+        {
+          property: "og:description",
+          content: this.$page.metadata.siteDescription,
+        },
+        { property: "og:url", content: `${siteUrl}` },
+        {
+          property: "og:image",
+          content:
+            "https://media-exp1.licdn.com/dms/image/C5603AQGuEHBqeZ-MBg/profile-displayphoto-shrink_200_200/0?e=1583971200&v=beta&t=CMbyHBfa_K4rZt2fwkZzXfGLgleLTVPBtoKKyzqpxWA",
+        },
       ],
-      script: [{ src: 'https://platform.twitter.com/widgets.js', async: true }]
-    }
-  }
-}
+      script: [{ src: "https://platform.twitter.com/widgets.js", async: true }],
+    };
+  },
+};
 </script>
 
 <style lang="scss">

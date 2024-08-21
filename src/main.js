@@ -1,25 +1,25 @@
 // Import focus-visible polyfill
-import 'focus-visible'
+import "focus-visible";
 
 // Import main css
-import '~/assets/style/index.scss'
+import "~/assets/style/index.scss";
 
 // Import Prismjs styles for code
-import 'prismjs/themes/prism-tomorrow.css'
+import "prismjs/themes/prism-tomorrow.css";
 
 // Import default layout so we don't need to import it to every page
-import DefaultLayout from '~/layouts/Default.vue'
+import DefaultLayout from "~/layouts/Default.vue";
 
-import VueDisqus from 'vue-disqus'
+import VueDisqus from "vue-disqus";
 
 // import VueGtm from 'vue-gtm'
 
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
-export default function (Vue, { router, head, isClient }) {
+export default function(Vue, { router, head, isClient }) {
   // Set default layout as a global component
-  Vue.component('Layout', DefaultLayout)
+  Vue.component("Layout", DefaultLayout);
 
-  Vue.use(VueDisqus)
+  Vue.use(VueDisqus);
 
   // If we want to initiate analytics manually instead of through configuration.
   /* if (isClient) {

@@ -1,7 +1,13 @@
 <template>
   <div class="author">
-
-    <g-image alt="Author image" class="author__image" src="~/assets/images/author.png" width="180" height="180" blur="5" />
+    <g-image
+      alt="Author image"
+      class="author__image"
+      src="~/assets/images/author.png"
+      width="180"
+      height="180"
+      blur="5"
+    />
 
     <h1 v-if="showTitle" class="author__site-title">
       {{ $static.metadata.siteName }}
@@ -17,7 +23,6 @@
       <a href="//github.com/ajrowland">GitHub</a>
       <a href="mailto:mailATandrewrowlandDOTcom">Email</a>
     </p>
-
   </div>
 </template>
 
@@ -32,8 +37,8 @@ query {
 
 <script>
 export default {
-  props: ['showTitle']
-}
+  props: ["showTitle"],
+};
 </script>
 
 <style lang="scss">
@@ -51,7 +56,7 @@ export default {
   }
 
   &__intro {
-    opacity: .8;
+    opacity: 0.8;
   }
 
   &__site-title {
@@ -59,9 +64,9 @@ export default {
   }
 
   &__links {
-    margin-top: -.5em;
+    margin-top: -0.5em;
     a {
-      margin: 0 .5em;
+      margin: 0 0.5em;
     }
   }
 }

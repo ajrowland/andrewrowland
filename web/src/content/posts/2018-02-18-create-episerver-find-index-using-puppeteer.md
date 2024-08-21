@@ -2,7 +2,7 @@
 title: Create Episerver Find index using Puppeteer
 date: 2018-02-18
 published: true
-tags: ['JavaScript','Node']
+tags: ["JavaScript", "Node"]
 canonical_url: false
 description: "Currently working with many clients who utilise Episerver CMS to managed their content. Almost all of then use Episerver Find to index content."
 ---

@@ -62,7 +62,7 @@ const { Content } = await post.render();
   <Author class="post-author" />
 </Layout>
 
-<style>
+<style is:global>
   .post-title {
     padding: calc(var(--space) / 2) 0 calc(var(--space) / 2);
     text-align: center;
@@ -109,6 +109,10 @@ const { Content } = await post.render();
         margin-left: calc(var(--space) * -1);
         display: block;
         max-width: none;
+      }
+
+      .astro-code {
+        padding: 1em;
       }
     }
   }

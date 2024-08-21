@@ -2,7 +2,7 @@
 title: Wolf CMS Related Pages plugin
 date: 2010-05-17
 published: true
-tags: ['CodeIgniter', 'PHP']
+tags: ["CodeIgniter", "PHP"]
 canonical_url: false
 description: "For many small projects I've been using Wolf CMS. a really nice and fairly lightweight application for managing content. What I like about it is that the core code is quite minimal, but allows you to extend using plugins."
 ---
@@ -22,7 +22,8 @@ Please be aware that I really did knock this together rather quickly, but it wor
 ## 6 thoughts on “Wolf CMS Related Pages plugin”
 
 ### Steven
-*January 15, 2011 at 4:08 pm*
+
+_January 15, 2011 at 4:08 pm_
 
 Very nice work! The plugin for Wolf version 0.6 works perfectly but I also tried the version for wolf 0.7.2 and it didn’t open the sub pages.
 
@@ -33,7 +34,8 @@ Still amazing! Keep up the good work!
 ---
 
 ### Steven
-*March 19, 2011 at 1:54 pm*
+
+_March 19, 2011 at 1:54 pm_
 
 Hey Andrew, I found a bug in your plugin,
 in the DeleteAllByPage function, you need to change it to
@@ -47,7 +49,8 @@ Because you also need to delete all of the records of the pages linked to the de
 ---
 
 ### Steven
-*March 19, 2011 at 1:55 pm*
+
+_March 19, 2011 at 1:55 pm_
 
 Sorry, there was a mistake in the line I sent you… this is the fix:
 
@@ -58,14 +61,16 @@ Record::deleteWhere(__CLASS__, ‘page_id = ? OR related_page_id = ?’, array($
 ---
 
 ### Andy
-*March 19, 2011 at 6:18 pm*
+
+_March 19, 2011 at 6:18 pm_
 
 Thanks Steven, the download now includes your fix. Thanks for this, it’s much appreciated.
 
 ---
 
 ### Christoph
-*October 10, 2011 at 6:22 am*
+
+_October 10, 2011 at 6:22 am_
 
 Hi!
 
@@ -79,7 +84,8 @@ Christoph
 ---
 
 ### Andy R
-*October 10, 2011 at 8:57 pm*
+
+_October 10, 2011 at 8:57 pm_
 
 You should by able to access the parent like you would any page object:
 

@@ -5,7 +5,7 @@
 // Changes here requires a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
-module.exports = function (api) {
+module.exports = function(api) {
   api.loadSource(async ({ actions, graphql }) => {
     /*const collection = actions.addCollection('Redirect')
 
@@ -27,7 +27,7 @@ module.exports = function (api) {
         })
       }
     })*/
-  })
+  });
 
   api.createPages(async ({ createPage, graphql }) => {
     /*const { data } = await graphql(`{
@@ -52,6 +52,5 @@ module.exports = function (api) {
         })
       }
     })*/
-  })
-
-}
+  });
+};

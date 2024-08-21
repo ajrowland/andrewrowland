@@ -16,9 +16,7 @@
     "typescript": "^5.5.4"
   },
   "devDependencies": {
-    "@csstools/postcss-global-data": "^3.0.0",
     "cssnano": "^7.0.5",
-    "postcss-compact-mq": "^0.2.1",
     "postcss-nested": "^6.2.0",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1"

@@ -2,7 +2,7 @@
 title: Linux Mint 5 Elyssa
 date: 2008-06-12
 published: true
-tags: ['Linux']
+tags: ["Linux"]
 canonical_url: false
 description: "I've been using Ubuntu for the past couple of years now, and have found it a perfectly viable alternative to Windows. As I mentioned in my very first post, I'm not a Linux zealot taking a political stance. It's just a simple preference. If I was a zealot I'd be using a distribution like Gentoo, Slackware, or Linux From Scatch. One for the hard nuts, I just want something that works on my five year old laptop. I'm too tight to upgrade, so that rules out Vista. Now there's an OS that drives Linux fundamentalism."
 ---

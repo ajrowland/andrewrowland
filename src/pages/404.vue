@@ -7,7 +7,7 @@
     </div>
 
     <div class="post content-box">
-        <p>Sorry, looks like that route does not exist. :-(</p>
+      <p>Sorry, looks like that route does not exist. :-(</p>
     </div>
   </Layout>
 </template>
@@ -15,9 +15,9 @@
 <script>
 export default {
   metaInfo: {
-    title: '404'
-  }
-}
+    title: "404",
+  },
+};
 </script>
 
 <style lang="scss">

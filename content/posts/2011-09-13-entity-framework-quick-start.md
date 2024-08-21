@@ -2,7 +2,7 @@
 title: Entity Framework quick start
 date: 2011-09-13
 published: true
-tags: ['DotNet']
+tags: ["DotNet"]
 canonical_url: false
 description: "Microsoft’s Entity Framework has been around a while, but with it’s latest incarnation it is really shaping up nicely. I’ve been enjoying the ‘code first’ approach in version 4.1 of the framework. This allows you start your application design from POCOs, allowing the framework to infer the database design for you."
 ---

@@ -2,7 +2,7 @@
 title: Install Solr 5 and Zookeeper in a production environment
 date: 2015-06-04
 published: true
-tags: ['Linux', 'Solr']
+tags: ["Linux", "Solr"]
 canonical_url: false
 description: "Recently I had to set up three Solr servers in an AWS environment. I couldn't find anything specific to help me, so had to locate all the information separately. Hopefully the following may be of use to anyone who has to go through the same. In my situation, I have 3 servers that will sit behind a load balancer. The following describes how I set up each server."
 ---
@@ -131,7 +131,7 @@ Now start up each ZooKeeper server:
 sudo /opt/zookeeper/bin/zkServer.sh start
 ```
 
-We need to return to Solr, to configure the Zookeeper hosts.* the solr.xml file::
+We need to return to Solr, to configure the Zookeeper hosts.\* the solr.xml file::
 
 ```shell
 sudo vi /var/solr/data/solr.xml
@@ -189,7 +189,7 @@ Edit the copied file to include the following start up comment:
 # description: starts zookeeper - /opt/zookeeper under user root
 ```
 
-I also amended the path to the bin directory. Locate and* the following in the script:
+I also amended the path to the bin directory. Locate and\* the following in the script:
 
 ```shell
 ZOOBIN=/opt/zookeeper/bin
@@ -253,7 +253,8 @@ I hope this has been useful, but appreciate that I might not be too clear on som
 ## 48 thoughts on "Install Solr 5 and Zookeeper in a production environment"
 
 ### johnb
-*September 23, 2015 at 2:39 am*
+
+_September 23, 2015 at 2:39 am_
 
 Thanks for the effort! I'm a little confused..
 
@@ -268,7 +269,8 @@ serverip1:2181,serverip2:2182,serverip3:2183
 ---
 
 ### Andy R
-*October 16, 2015 at 10:57 am*
+
+_October 16, 2015 at 10:57 am_
 
 Sorry John. You're correct, and I was a little vague. I write these things almost as a note to myself, which can make my writing style a little confused.
 
@@ -288,14 +290,16 @@ Hope this helps. I don't have access to the Solr set up I created for Unilever a
 ---
 
 ### johnb
-*October 31, 2015 at 6:24 pm*
+
+_October 31, 2015 at 6:24 pm_
 
 Thanks Andy – I'll give it another shot now and let you know. If it works well, I'll send you a copy of the configuration...
 
 ---
 
 ### Tarikur Rahaman
-*April 8, 2016 at 10:27 am*
+
+_April 8, 2016 at 10:27 am_
 
 Please update this comment inside your main tutorial.
 Thanks.
@@ -303,14 +307,16 @@ Thanks.
 ---
 
 ### Andy R
-*April 8, 2016 at 10:42 am*
+
+_April 8, 2016 at 10:42 am_
 
 Done.
 
 ---
 
 ### Tarikur Rahaman
-*April 8, 2016 at 3:47 pm*
+
+_April 8, 2016 at 3:47 pm_
 
 Hi, I was able to create solrcloud with zookeeper. But Iâ€™m facing a problem. If i create a collection with 3 shard and 3 replication then all master shard show in same server (172.31.13.85). If i reboot this server then another server takeover this responsibility but still that server is serving standalone. Please see the picture to better understand.
 
@@ -319,7 +325,8 @@ Hi, I was able to create solrcloud with zookeeper. But Iâ€™m facing a probl
 ---
 
 ### Tarikur Rahman
-*October 27, 2015 at 1:41 pm*
+
+_October 27, 2015 at 1:41 pm_
 
 Thanks for the nice tutorial.
 I'm new in solr and zookeeper. I want to know we are taking 3 instance and for 1 new collection/core, data is shard within 2 instance and replicate 3 instance?
@@ -328,14 +335,16 @@ When solr get incoming query, how does it serve? Because it shard between 2 inst
 ---
 
 ### Andy R
-*November 1, 2015 at 10:16 pm*
+
+_November 1, 2015 at 10:16 pm_
 
 Thanks Tarikur. You are correct, three instances, one collection. In this particular environment, a load balancer is used to direct queries to any of the three Solr applications.
 
 ---
 
 ### r3l34s3
-*November 5, 2015 at 11:00 am*
+
+_November 5, 2015 at 11:00 am_
 
 Very nice tutorial, thanks!
 
@@ -344,7 +353,8 @@ For Ubuntu 14.04 users stuck with "chkconfig: command not found": replace chkcon
 ---
 
 ### RR
-*January 28, 2016 at 1:26 pm*
+
+_January 28, 2016 at 1:26 pm_
 
 Hi
 Thank you for this tutorial.
@@ -355,7 +365,8 @@ Thanks
 ---
 
 ### Raid
-*March 3, 2016 at 11:44 am*
+
+_March 3, 2016 at 11:44 am_
 
 Hi
 One thing is not clear:
@@ -366,7 +377,8 @@ thank you
 ---
 
 ### johnb
-*March 10, 2016 at 5:30 pm*
+
+_March 10, 2016 at 5:30 pm_
 
 Zookeeper has an "internal" representation of all the data it stores. You have to use the zkCli.sh command to access the data. If you look that up you will see how it's done.
 
@@ -385,7 +397,8 @@ I currently have the following in Zookeeper: /solr4.9, a /solr5.4, a /kafka, and
 ---
 
 ### johnb
-*March 10, 2016 at 10:43 pm*
+
+_March 10, 2016 at 10:43 pm_
 
 Oh, and in the command line above, the /home/john/conf folder was a copy of a previously-existing SOLR conf folder. IIRC you only need schema.xml and solrconfig.xml, but don't hold me to that.
 
@@ -394,7 +407,8 @@ Also, this command will CREATE the /solr5_4 "directory" in Zookeeper if it doesn
 ---
 
 ### Michael
-*March 6, 2016 at 11:19 am*
+
+_March 6, 2016 at 11:19 am_
 
 Hi Andy,
 First: thanks a lot it's the best tutorial for this task.
@@ -405,7 +419,8 @@ Michael
 ---
 
 ### johnb
-*March 10, 2016 at 5:33 pm*
+
+_March 10, 2016 at 5:33 pm_
 
 No. In a production-like environment, you probably want your Zookeeper "cluster" separate anyway – although the online documentation about how to do that (SOLR Cloud) is sorely lacking.
 
@@ -416,7 +431,8 @@ Of course, you could do it that way, but you'd be multiplying the number of zook
 ---
 
 ### johnb
-*March 10, 2016 at 6:10 pm*
+
+_March 10, 2016 at 6:10 pm_
 
 By the way – you'll need to start or restart your SOLR process in a way that points it at the correct Zookeeper instances. Here's an example from my documentation:
 sudo /opt/solr/bin/solr restart -c -z 192.168.56.5,192.168.56.6,192.168.56.7/solr5_4
@@ -434,7 +450,8 @@ Short of building my own "boot script thingie" I haven't been able to solve this
 ---
 
 ### Anonymous
-*March 10, 2016 at 12:17 pm*
+
+_March 10, 2016 at 12:17 pm_
 
 Can we setup Zookeeper and Solr Cluster separately and on different cloud services?
 
@@ -446,14 +463,16 @@ If No, then my ZK1,2,3 and Solr 1,2,3 servers in 1 cloud service will be the app
 ---
 
 ### johnb
-*March 10, 2016 at 5:35 pm*
+
+_March 10, 2016 at 5:35 pm_
 
 I haven't done it in AWS – but it seems to me the only limitation would be networking. I.E. as long as SOLR can "talk" to Zookeeper across the network and as long as Zookeeper can "talk" to SOLR across your networks, you should be fine.
 
 ---
 
 ### Andy R
-*March 10, 2016 at 5:39 pm*
+
+_March 10, 2016 at 5:39 pm_
 
 Thanks for the help John. I thought I was going to have to delve back into Solr to help these folk out. Much appreciated.
 
@@ -462,7 +481,8 @@ Andy
 ---
 
 ### johnb
-*March 10, 2016 at 5:52 pm*
+
+_March 10, 2016 at 5:52 pm_
 
 You bet. Happy to contribute. Your post here saved me a lot of time once I found it.
 
@@ -479,28 +499,32 @@ Anyway — It's all fresh in my mind and I'll be working on this project for ano
 ---
 
 ### johnb
-*March 10, 2016 at 5:54 pm*
 
-Sorry – That middle bit where I complain was supposed to be surrounded by "Rant" psuedo-html, but the site*ed it out...
+_March 10, 2016 at 5:54 pm_
+
+Sorry – That middle bit where I complain was supposed to be surrounded by "Rant" psuedo-html, but the site\*ed it out...
 
 ---
 
 ### Andy R
-*March 10, 2016 at 6:00 pm*
+
+_March 10, 2016 at 6:00 pm_
 
 Ha! Know exactly how you feel. It's never straightforward is it? I couldn't believe there was nothing that listed this stuff out methodically, hence the post. The more this helps, the merrier.
 
 ---
 
 ### johnb
-*March 10, 2016 at 6:13 pm*
+
+_March 10, 2016 at 6:13 pm_
 
 By the way – did you know this page is #3 in a Google search for "Install SOLR in Production"? I'm guessing this is going to become the place people go until and unless the SOLR folks step up...
 
 ---
 
 ### Prashant
-*March 21, 2016 at 1:30 pm*
+
+_March 21, 2016 at 1:30 pm_
 
 nice tutorial, thanks!
 When I restart solr .It gives error
@@ -526,14 +550,16 @@ In solr.xml I added
 ---
 
 ### manohar
-*March 22, 2016 at 7:58 am*
+
+_March 22, 2016 at 7:58 am_
 
 can You please provide steps for windows machines.I am not able to setup solr 5 and zookeeper in windows machines.
 
 ---
 
 ### johnb
-*March 22, 2016 at 2:37 pm*
+
+_March 22, 2016 at 2:37 pm_
 
 I'm unable to do that I'm afraid. I don't have any experience setting up any of these open source tools on Windows – nor is this really a forum for questions like that. You might try stackoverflow or something similar. However – when you do, a specific question about a specific problem is going to get more responses than a general question like this one... usually.
 
@@ -544,7 +570,8 @@ I saw some promising links there...
 ---
 
 ### manohar
-*March 23, 2016 at 8:02 am*
+
+_March 23, 2016 at 8:02 am_
 
 Thanks sir for quick reply, currently i setup solr cloud and zookeeper successfully. Now i created one core like "test " and i want to add test core to multiple servers like
 
@@ -560,7 +587,8 @@ How can i do?
 ---
 
 ### johnb
-*March 23, 2016 at 6:40 pm*
+
+_March 23, 2016 at 6:40 pm_
 
 Keep in mind everything I say is based on experience with Linux and SOLR only. I have no idea how it works on Windows. Your milage may vary.
 
@@ -599,13 +627,13 @@ for a particular collection. Obviously if you have more than one collection,
 repeat the appropriate steps for each collection.
 
 In this case that would mean adding additional directories to /var/solr/data and adding or
-or*ing new properties files (if you copied/renamed your core directorie rather than making a new one)
+or\*ing new properties files (if you copied/renamed your core directorie rather than making a new one)
 
 1. make the new vm
 2. install solr (or, duh, have that already done.)
-a.Turn Solr OFF before the next bit.
-I'm not sure it absolutely matters, but it's a habit of mine.
-It's how I tested.
+   a.Turn Solr OFF before the next bit.
+   I'm not sure it absolutely matters, but it's a habit of mine.
+   It's how I tested.
 
 ```shell
 sudo service solr stop
@@ -630,8 +658,8 @@ nano /var/solr/data/statdx_shard1_replica3/core.properties
 ##### CHOICE B:
 
 3. copy the core (statdx) directory from a working machine into the new one.
-(I don't know if the working machine's SOLR has to be offline to do this.)
-I did it while it was running, but no one was pinging SOLR either.
+   (I don't know if the working machine's SOLR has to be offline to do this.)
+   I did it while it was running, but no one was pinging SOLR either.
 
 ```shell
 scp -Cpvr solr-5.4.0.tgz solr@192.168.56.15:/var/solr/data
@@ -804,25 +832,28 @@ coreNodeName=core_node3
 ---
 
 ### johnb
-*March 23, 2016 at 9:00 pm*
+
+_March 23, 2016 at 9:00 pm_
 
 I should have added that at step 7 (restart solr) the collections should show up correctly as "new" nodes in the SOLR Admin UI as well. They do get a copy of the entire collection so it can take a few minutes for them to be totally "up and available".
 
-In other words, if the appropriate directory is there with ONLY a correctly-made core.properties file, SOLR will read that file and recognize that this is another "node" or "replicant" of the collection mentioned in the file. Solr and Zookeeper *should* do all the rest, including sending all the data over to the new nodes from one of the old ones.
+In other words, if the appropriate directory is there with ONLY a correctly-made core.properties file, SOLR will read that file and recognize that this is another "node" or "replicant" of the collection mentioned in the file. Solr and Zookeeper _should_ do all the rest, including sending all the data over to the new nodes from one of the old ones.
 
 Good luck!
 
 ---
 
 ### manohar
-*March 24, 2016 at 5:49 am*
+
+_March 24, 2016 at 5:49 am_
 
 Thank you sir, this is my mail id: manu.cmh@gmail.com
 
 ---
 
 ### johnb
-*March 24, 2016 at 8:02 pm*
+
+_March 24, 2016 at 8:02 pm_
 
 In summary, if you have properly set up SOLR in "cloud" mode and have a Zookeeper instance set up and ready to go (but with nothing for Solr in it yet) the following commands will get you set up and running with a "one shard" setup and as many replicas as you want.
 
@@ -913,11 +944,11 @@ It might not hurt to restart SOLR before doing this last step... I don't believe
 
 Good luck!
 
-
 ---
 
 ### manohar
-*May 25, 2016 at 8:23 am*
+
+_May 25, 2016 at 8:23 am_
 
 Hi Sir,
 
@@ -944,7 +975,8 @@ Thanks in advance.
 ---
 
 ### johnb
-*May 26, 2016 at 4:00 pm*
+
+_May 26, 2016 at 4:00 pm_
 
 It's possible that Solr Cloud is already parsing out the indexing work between the various nodes so that your two hour timeframe is actually the best your "cloud" can do because all the nodes are involved in indexing the incoming documents — even if you are pointed at only one if them with your code or the import tool...
 
@@ -973,7 +1005,8 @@ Hope that helps...
 ---
 
 ### Tarikur Rahaman
-*April 8, 2016 at 7:52 am*
+
+_April 8, 2016 at 7:52 am_
 
 Hi, I was able to create solrcloud with zookeeper. But I'm facing a problem. If i create a collection with 3 shard and 3 replication then all master shard show in same server (172.31.13.85). If i reboot this server then another server takeover this responsibility but still that server is serving standalone. Please see the picture to better understand.
 
@@ -982,7 +1015,8 @@ Hi, I was able to create solrcloud with zookeeper. But I'm facing a problem. If 
 ---
 
 ### Prashant
-*April 22, 2016 at 8:23 am*
+
+_April 22, 2016 at 8:23 am_
 
 Facing issue after installation. When I check
 sudo service solr status
@@ -1007,14 +1041,16 @@ server.3=192.168.1.120:2888:3888
 ---
 
 ### johnb
-*April 22, 2016 at 4:35 pm*
+
+_April 22, 2016 at 4:35 pm_
 
 Is that the SOLR log or the Zookeeper log? Connection refused strongly suggests that ports or IP addresses are not open in your networking setup. Can you ping the IP addresses from SOLR to Zookeeper and from Solr to Solr machines? Can you telnet the ports in the same way?
 
 ---
 
 ### manohar
-*May 25, 2016 at 8:25 am*
+
+_May 25, 2016 at 8:25 am_
 
 Hi Sir,
 
@@ -1041,14 +1077,16 @@ Thanks in advance.
 ---
 
 ### johnb
-*May 27, 2016 at 4:18 pm*
+
+_May 27, 2016 at 4:18 pm_
 
 My first thought is to ask whether all your machines can ping the URL of all the other machines?
 
 ---
 
 ### shivendra
-*May 25, 2016 at 10:54 am*
+
+_May 25, 2016 at 10:54 am_
 
 Hi,
 
@@ -1061,7 +1099,8 @@ Thanks! in advance
 ---
 
 ### johnb
-*May 27, 2016 at 4:16 pm*
+
+_May 27, 2016 at 4:16 pm_
 
 I'm all Java and Linux, so I'm afraid I can't help you with calling Solr programatically from asp.net other than to say that Solr has an API which can be called via HTTP.
 
@@ -1078,7 +1117,8 @@ Finally – for in-depth Solr questions – sign up for the mailing list — I m
 ---
 
 ### Andy R
-*May 27, 2016 at 4:28 pm*
+
+_May 27, 2016 at 4:28 pm_
 
 From the link John provided, I've used SolrNet on a large project with success. The developer has moved the repo to:
 
@@ -1087,7 +1127,8 @@ https://github.com/mausch/SolrNet
 ---
 
 ### manohar
-*July 18, 2016 at 7:01 am*
+
+_July 18, 2016 at 7:01 am_
 
 I'm using SOLR 5.4.1 to index pdf and other type of documents using the ExtractingRequestHandler. The indexing itself works fine but I don't know how to get the page number and paragraph of a search result.
 
@@ -1098,7 +1139,8 @@ can you please tell me how to do it?
 ---
 
 ### johnb
-*July 18, 2016 at 7:22 pm*
+
+_July 18, 2016 at 7:22 pm_
 
 I'm not familiar with ExtractingRequestHandler, but in simple terms, the data you need has to be in the response from SOLR.
 
@@ -1117,14 +1159,16 @@ There are a couple of interesting links there that may provide more information.
 ---
 
 ### johnb
-*July 18, 2016 at 7:24 pm*
+
+_July 18, 2016 at 7:24 pm_
 
 Oh, and of course, the best place to go for advice is the solr user mailing list you'll find on this page: http://lucene.apache.org/solr/resources.html#community
 
 ---
 
 ### veerk
-*September 1, 2016 at 7:40 pm*
+
+_September 1, 2016 at 7:40 pm_
 
 Hi,
 We have hosted solr on two nodes – server1:8983 and server2:8983 with zk running on both – server1:2181 and server2:2181.
@@ -1141,13 +1185,15 @@ Thanks in advance!!
 ---
 
 ### veerk
-September 1, 2016 at 7:42 pm*
+
+September 1, 2016 at 7:42 pm\*
 BTW, we are using solr 5.3.1 and zk 3.4.6
 
 ---
 
 ### johnb
-*September 7, 2016 at 6:11 pm*
+
+_September 7, 2016 at 6:11 pm_
 
 the best place to go for advice is the solr user mailing list you'll find on this page: http://lucene.apache.org/solr/resources.html#community.
 
@@ -1156,7 +1202,8 @@ I recommend that you take the time to put all the details (exact command line us
 ---
 
 ### johnb
-*September 7, 2016 at 6:13 pm*
+
+_September 7, 2016 at 6:13 pm_
 
 Oh, and to the best of my knowledge, there is NO way to avoid restarting SOLR after a config change. But I don't know everything.
 

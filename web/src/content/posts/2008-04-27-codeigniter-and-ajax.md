@@ -140,28 +140,32 @@ Obviously this solution does not scale well for more complex data structures. I 
 ## 12 thoughts on “CodeIgniter and Ajax”
 
 ### Anonymous
-*August 12, 2008 at 5:34 pm*
+
+_August 12, 2008 at 5:34 pm_
 
 Incredible, thanks a lot for this… it is exactly what I was looking for +invisible props.
 
 ---
 
 ### Christophe Sautot
-*May 13, 2009 at 4:37 am*
+
+_May 13, 2009 at 4:37 am_
 
 Thank you for posting this. It was really simple to understand, and straight to the point.
 
 ---
 
 ### Jedd
-*November 6, 2009 at 6:38 pm*
+
+_November 6, 2009 at 6:38 pm_
 
 Looks interesting, and easy to follow. Reading is a bit frustrating on a 22″ monitor, given the code lumps are only showing about a 1/4 to a 1/3 of the width (much left & right scrolling required). Flippin' pixel-based stylesheets!
 
 ---
 
 ### ghprod
-*December 30, 2009 at 8:45 am*
+
+_December 30, 2009 at 8:45 am_
 
 wonderful application!
 
@@ -170,7 +174,8 @@ thanks for sharing this ajax!
 ---
 
 ### Rick
-*January 28, 2010 at 4:17 am*
+
+_January 28, 2010 at 4:17 am_
 
 You have to load the url helper in the controller constructor like so:
 
@@ -181,42 +186,48 @@ Very nice post thanks
 ---
 
 ### sudeep
-*April 10, 2010 at 4:12 am*
+
+_April 10, 2010 at 4:12 am_
 
 dear Very very thankxxxxxx
 
 ---
 
 ### heisler
-*August 4, 2010 at 3:29 pm*
+
+_August 4, 2010 at 3:29 pm_
 
 Gracias
 
 ---
 
 ### Rayhan
-*January 16, 2011 at 3:20 pm*
+
+_January 16, 2011 at 3:20 pm_
 
 It's awesome! thanks a lot
 
 ---
 
 ### triathlon wetsuit
-*February 8, 2011 at 10:28 am*
+
+_February 8, 2011 at 10:28 am_
 
 Awesome!
 
 ---
 
 ### Frederik .
-*May 18, 2011 at 8:53 am*
+
+_May 18, 2011 at 8:53 am_
 
 exactly what is was looking for, thanks !
 
 ---
 
 ### Kevin Phillips
-*July 30, 2011 at 9:38 pm*
+
+_July 30, 2011 at 9:38 pm_
 
 As of ci 2 with csrf enabled you also need to add the ci_csrf_token into the post data.
 
@@ -225,7 +236,7 @@ ie:
 create a var inside the script
 
 ```javascript
-var cct = $.cookie('ci_csrf_token');
+var cct = $.cookie("ci_csrf_token");
 ```
 
 then at that to the post data
@@ -237,7 +248,8 @@ then at that to the post data
 ---
 
 ### Kevin Phillips
-*July 30, 2011 at 11:00 pm*
+
+_July 30, 2011 at 11:00 pm_
 
 I've made an update of this tutorial for codeigniter2 with csrf enabled
 http://www.kevinphillips.co.nz/news/jquery-axaj-codeigniter-2
