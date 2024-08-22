@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 import { getPath } from "@lib/util";
 import PostMeta from "./PostMeta.astro";
@@ -7,17 +7,20 @@ import PostTags from "./PostTags.astro";
 
 type Props = {
   post: CollectionEntry<"posts">;
-}
+};
 
 const { post } = Astro.props;
 ---
 
-<div
-  class="post-card content-box">
+<div class="post-card content-box">
   <div class="post-card__header">
     {
       post.data.cover_image && (
-        <Image alt="Cover image" class="post-card__image" src={post.data.cover_image} />
+        <Image
+          alt="Cover image"
+          class="post-card__image"
+          src={post.data.cover_image}
+        />
       )
     }
   </div>
@@ -27,9 +30,7 @@ const { post } = Astro.props;
 
     <PostMeta class="post-card__meta" post={post} />
 
-    <a
-      class="post-card__link"
-      href={getPath(post.slug)}
+    <a class="post-card__link" href={getPath(post.slug)}
       >Read {post.data.title}</a
     >
 

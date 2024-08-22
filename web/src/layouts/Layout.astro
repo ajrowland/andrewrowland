@@ -41,7 +41,10 @@ const { showLogo } = Astro.props;
 
 <script>
   document.querySelectorAll("[href^=mailto]").forEach(function (link) {
-    var href = link.getAttribute("href")?.replace("AT", "@").replace("DOT", ".");
+    var href = link
+      .getAttribute("href")
+      ?.replace("AT", "@")
+      .replace("DOT", ".");
     if (href) link.setAttribute("href", href);
   });
 
