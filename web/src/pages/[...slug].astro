@@ -24,10 +24,6 @@ export const getStaticPaths = async () => {
 
 const { post } = Astro.props;
 
-const coverImage = post.data.cover_image
-  ? import(`/src/content/posts/${post.data.cover_image}`)
-  : "";
-
 const { Content } = await post.render();
 ---
 
@@ -43,8 +39,8 @@ const { Content } = await post.render();
   <div class="post content-box">
     <div class="post__header">
       {
-        coverImage && (
-          <Image alt="Cover image" class="post-card__image" src={coverImage} />
+        post.data.cover_image && (
+          <Image alt="Cover image" class="post-card__image" src={post.data.cover_image} />
         )
       }
     </div>
@@ -56,8 +52,6 @@ const { Content } = await post.render();
     <div class="post__footer">
       <PostTags post={post} />
     </div>
-
-    {post.comments && <div class="post-comments">TODO!</div>}
   </div>
 
   <Author class="post-author" />

@@ -1,14 +1,11 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import { Image } from "astro:assets";
 import { getPath } from "@lib/util";
 import PostMeta from "./PostMeta.astro";
 import PostTags from "./PostTags.astro";
 
-const { post } = Astro.props;
-
-const coverImage = post.data.cover_image
-  ? import(`/src/content/posts/${post.data.cover_image}`)
-  : "";
+const post: CollectionEntry<"posts"> = Astro.props.post;
 ---
 
 <div
@@ -17,8 +14,8 @@ const coverImage = post.data.cover_image
 >
   <div class="post-card__header">
     {
-      coverImage && (
-        <Image alt="Cover image" class="post-card__image" src={coverImage} />
+      post.data.cover_image && (
+        <Image alt="Cover image" class="post-card__image" src={post.data.cover_image} />
       )
     }
   </div>
