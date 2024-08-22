@@ -23,6 +23,18 @@ const siteTitle = title ? `${title} - Andrew Rowland` : "Andrew Rowland";
 <!doctype html>
 <html lang="en">
   <head>
+    <script is:inline>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-5KQZ3N");
+    </script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta
@@ -34,10 +46,7 @@ const siteTitle = title ? `${title} - Andrew Rowland` : "Andrew Rowland";
     <meta name="description" content={description} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:description" content={description} />
-    <meta
-      name="twitter:title"
-      content={siteTitle}
-    />
+    <meta name="twitter:title" content={siteTitle} />
     <meta name="twitter:site" content="@andyjrowland" />
     <meta name="twitter:creator" content="@andyjrowland" />
     <meta name="twitter:image" content={image} />
@@ -49,28 +58,33 @@ const siteTitle = title ? `${title} - Andrew Rowland` : "Andrew Rowland";
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
   </head>
   <body>
-    <div id="app">
-      <header class="header">
-        <div class="header__left">
-          {showLogo && <Logo />}
-        </div>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-5KQZ3N"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <header class="header">
+      <div class="header__left">
+        {showLogo && <Logo />}
+      </div>
 
-        <div class="header__right">
-          <ToggleTheme />
-        </div>
-      </header>
+      <div class="header__right">
+        <ToggleTheme />
+      </div>
+    </header>
 
-      <main class="main">
-        <slot />
-      </main>
+    <main class="main">
+      <slot />
+    </main>
 
-      <footer class="footer">
-        <span class="footer__copyright"
-          >Copyright &copy; {new Date().getFullYear()}.
-        </span>
-        <span class="footer__links"></span>
-      </footer>
-    </div>
+    <footer class="footer">
+      <span class="footer__copyright"
+        >Copyright &copy; {new Date().getFullYear()}.
+      </span>
+      <span class="footer__links"></span>
+    </footer>
   </body>
 </html>
 
