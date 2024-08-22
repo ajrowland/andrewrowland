@@ -5,13 +5,15 @@ import { getPath } from "@lib/util";
 import PostMeta from "./PostMeta.astro";
 import PostTags from "./PostTags.astro";
 
-const post: CollectionEntry<"posts"> = Astro.props.post;
+type Props = {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
 ---
 
 <div
-  class="post-card content-box"
-  class:list={{ "post-card--has-poster": post.data.poster }}
->
+  class="post-card content-box">
   <div class="post-card__header">
     {
       post.data.cover_image && (

@@ -4,7 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import Author from "@components/Author.astro";
 import PostCard from "@components/PostCard.astro";
 
-const posts = await getCollection("posts", ({ data }: { data: any }) => {
+const posts = await getCollection("posts", ({ data }) => {
   return import.meta.env.PROD ? data.published === true : true;
 });
 ---
