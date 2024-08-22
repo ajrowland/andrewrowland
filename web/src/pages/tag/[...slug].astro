@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import type { CollectionEntry } from 'astro:content';
 import { getPath } from "@lib/util";
 import Layout from "@layouts/Layout.astro";
 import PostCard from "@components/PostCard.astro";
@@ -10,21 +9,17 @@ export const getStaticPaths = async () => {
     return import.meta.env.PROD ? data.published === true : true;
   });
 
-  const tags = posts.reduce<{ [key: string]: CollectionEntry<"posts">[] }>((acc, post) => {
-    post.data.tags?.forEach((tag: string) => {
-      if (!acc[tag]) acc[tag] = [];
-      acc[tag].push(post);
-    });
+  const uniqueTags = [...new Set(posts.map((post) => post.data.tags).flat())];
 
-    return acc;
-  }, {});
-
-  return Object.keys(tags).map((tag) => {
+  return uniqueTags.map((tag) => {
+    const filteredPosts = posts.filter((post) =>
+      post.data.tags.includes(tag)
+    );
     return {
       params: {
         slug: getPath(tag),
       },
-      props: { title: tag, posts: tags[tag] },
+      props: { title: tag, posts: filteredPosts },
     };
   });
 };
