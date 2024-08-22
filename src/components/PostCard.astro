@@ -19,6 +19,7 @@ const { post } = Astro.props;
         <Image
           alt="Cover image"
           class="post-card__image"
+          loading="eager"
           src={post.data.cover_image}
         />
       )

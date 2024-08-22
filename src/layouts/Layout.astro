@@ -16,10 +16,12 @@ const {
   image = "https://media-exp1.licdn.com/dms/image/C5603AQGuEHBqeZ-MBg/profile-displayphoto-shrink_200_200/0?e=1583971200&v=beta&t=CMbyHBfa_K4rZt2fwkZzXfGLgleLTVPBtoKKyzqpxWA",
   showLogo,
 } = Astro.props;
+
+const siteTitle = title ? `${title} - Andrew Rowland` : "Andrew Rowland";
 ---
 
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
@@ -28,21 +30,23 @@ const {
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
+    <title>{siteTitle}</title>
     <meta name="description" content={description} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:description" content={description} />
     <meta
       name="twitter:title"
-      content={title ? `${title} - Andrew Rowland` : "Andrew Rowland"}
+      content={siteTitle}
     />
     <meta name="twitter:site" content="@andyjrowland" />
     <meta name="twitter:creator" content="@andyjrowland" />
     <meta name="twitter:image" content={image} />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={siteTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={Astro.url} />
     <meta property="og:image" content={image} />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
   </head>
   <body>
     <div id="app">

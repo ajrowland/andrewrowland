@@ -1,16 +1,18 @@
 ---
+import Image from "astro/components/Image.astro";
 import authorImage from "@assets/images/author.png";
 
 const { showTitle } = Astro.props;
 ---
 
 <div class="author">
-  <img
+  <Image
     alt="Author image"
     class="author__image"
-    src={authorImage.src}
+    src={authorImage}
     width="180"
     height="180"
+    loading="eager"
   />
 
   {showTitle && <h1 class="author__site-title">Andrew Rowland</h1>}

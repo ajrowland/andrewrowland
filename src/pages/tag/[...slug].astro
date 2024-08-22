@@ -25,7 +25,7 @@ export const getStaticPaths = async () => {
 const { title, posts } = Astro.props;
 ---
 
-<Layout showLogo={true}>
+<Layout title={title} showLogo={true}>
   <h1 class="tag-title text-center space-bottom"># {title}</h1>
 
   <div class="posts">

@@ -2,7 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 ---
 
-<Layout showLogo={true}>
+<Layout title="404" showLogo={true}>
   <div class="post-title">
     <h1 class="post-title__text">Page not found</h1>
   </div>
@@ -20,7 +20,7 @@ import Layout from "@layouts/Layout.astro";
   };
 </script>
 
-<style lang="scss">
+<style>
   .post-title {
     padding: calc(var(--space) / 2) 0 calc(var(--space) / 2);
     text-align: center;
